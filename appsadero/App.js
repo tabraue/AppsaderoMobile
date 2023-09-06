@@ -1,13 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet} from 'react-native';
 import Card from './src/components/Card/Card';
+import LoginScreen from './src/Views/LoginScreen/LoginScreen';
+import StatusBarCustomized from './src/components/StatusBarCustomized/StatusBar.jsx'
 
 export default function App() {
   return (
+
     <View style={styles.container}>
-      <Card/>
+      {/* <StatusBarCustomized/> */}
+     {/*  <Card/> */}
+      <LoginScreen/>
     </View>
+  
   );
+
+  
 }
 
 const styles = StyleSheet.create({
@@ -15,6 +22,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    
   },
-});
+})
+
+
