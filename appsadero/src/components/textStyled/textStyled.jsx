@@ -9,7 +9,7 @@ const TextStyled = ({ children, color, background, fontSize, style, ...restOfPro
     color === "success" && styles.colorSuccess,
     color === "owner" && styles.text.color,
     fontSize === "body" && styles.text.fontSize,
-    background === "backgroundColor" && styles.background.backgroundColor,
+    background === "backgroundColor" && styles.background,
     background === "borderRadius" && styles.background.borderRadius,
   ];
   return (
