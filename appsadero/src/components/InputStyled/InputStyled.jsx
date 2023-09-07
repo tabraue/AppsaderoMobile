@@ -1,6 +1,6 @@
 import { View, TextInput, StyleSheet } from "react-native"; // Cambiado de 'react-native-web' a 'react-native'
 import React from "react";
-import theme from "../../theme";
+import theme from "../../../theme/theme";
 
 const InputStyled = ({placeholder, secure}) => {
 
@@ -18,15 +18,14 @@ const InputStyled = ({placeholder, secure}) => {
 
 const styles = StyleSheet.create({
   input: {
-    borderWidth: 1,
+    borderWidth: theme.border.width,
     borderColor: theme.colors.backgroundColor,
-    borderRadius: 10,
-    padding: 5,
+    borderRadius: theme.border.borderRadius,
+    padding: theme.border.padding,
     width: 300,
     height: 50,
     fontSize: theme.fontSizes.body,
     marginTop: 20
-    
   },
 });
 

@@ -1,14 +1,14 @@
 import { View } from 'react-native'
 import React from 'react'
 import TextStyled from "../textStyled/textStyled";
-import Constants from 'expo-constants'
+import theme from '../../../theme/theme';
 
 const Card = () => {
   return (
-    <View style={{marginTop: Constants.statusBarHeight, flexGrow:1}}>
-      <TextStyled color="backgroundColor">Hola</TextStyled>
-      <TextStyled color="success"> probando esto</TextStyled>
-      <TextStyled background="backgroundColor"> esto debe tener fondo</TextStyled>
+    <View style={{marginTop: theme.margins.top, flexGrow:1}}>
+      <TextStyled>Hola</TextStyled>
+      <TextStyled borderColor='owner'> probando esto con un borde</TextStyled>
+      <TextStyled backgroundColor='salmon'> esto debe tener fondo</TextStyled>
     </View>
   );
 }
