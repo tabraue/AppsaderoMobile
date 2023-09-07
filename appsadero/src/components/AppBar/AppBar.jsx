@@ -1,8 +1,8 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import TextStyled from "../textStyled/textStyled";
-import theme from "../../theme";
 import { Link, useLocation } from "react-router-native";
+import theme from "../../../theme/theme";
 
 const AppBarTab = ({ children, to}) => {
     const { pathname } = useLocation();

@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet} from 'react-native'
 import React from 'react'
-import theme from '../../theme'
+import theme from '../../../theme/theme'
 import InputStyled from '../../components/InputStyled/InputStyled'
 import ButtonStyled from '../../components/ButtonStyled/ButtonStyled'
 
