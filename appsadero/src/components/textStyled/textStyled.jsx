@@ -5,8 +5,9 @@ import theme from "../../theme";
 const TextStyled = ({ children, color, background, fontSize, style, ...restOfProps }) => {
   const textStyles = [
     styles.text,
+    style,
     color === "backgroundColor" && styles.backgroundColor,
-    color === "success" && styles.colorSuccess,
+    color === "success" && styles.text.colorSuccess,
     color === "owner" && styles.text.color,
     fontSize === "body" && styles.text.fontSize,
     background === "backgroundColor" && styles.background.backgroundColor,
@@ -23,6 +24,9 @@ const styles = StyleSheet.create({
   text: {
     color: theme.colors.ownerColor,
     fontSize: theme.fontSizes.body,
+  },
+  active:{
+        color: '#fffff',
   },
   colorBackground: {
     color: theme.colors.backgroundColor,

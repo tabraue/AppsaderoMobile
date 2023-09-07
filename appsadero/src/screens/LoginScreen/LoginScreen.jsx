@@ -7,14 +7,14 @@ import ButtonStyled from '../../components/ButtonStyled/ButtonStyled'
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
+
       <Text style={styles.title}>Login</Text>
-      <InputStyled placeholder={"Write your email"}  />
-      <InputStyled
-        placeholder={"Write your password"}
-        secure={true}
-      />
-      <Text style={styles.text}>Haven't you an account? <Text>{"  "}Click here</Text></Text>
-      <ButtonStyled title='Submit' color={theme.colors.backgroundColor}  />
+      <InputStyled placeholder={"Write your email"} />
+      <InputStyled placeholder={"Write your password"} secure={true} />
+      <Text style={styles.text}>
+        Haven't you an account? <Text>{"  "}Click here</Text>
+      </Text>
+      <ButtonStyled title="Submit" color={theme.colors.backgroundColor} />
     </View>
   );
 }
