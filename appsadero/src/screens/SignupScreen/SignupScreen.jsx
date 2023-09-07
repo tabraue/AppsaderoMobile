@@ -1,11 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import theme from '../../../theme/theme';
 
 
 function Signup(){
     return (
       <View style={styles.container}>
-        <Text>Hola</Text>
+        <Text>SIGNUP</Text>
 
       </View>
     );
@@ -13,8 +14,9 @@ function Signup(){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
+    paddingTop: theme.margins.top + 10,
+    color: theme.colors.textPrimary
   },
 });
 

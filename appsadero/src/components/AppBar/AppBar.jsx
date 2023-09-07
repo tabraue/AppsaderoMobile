@@ -1,7 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Pressable, Button } from "react-native";
+import { View, StyleSheet, Pressable, Button, Text } from "react-native";
 import theme from "../../../theme/theme";
-
+import { useRoute } from "@react-navigation/native";
 
 /* const AppBarTab = ({ active, children, to}) => {
 
@@ -16,25 +16,36 @@ import theme from "../../../theme/theme";
 
     )
 }
-
-const AppBar = () => {
-  return (
-    <View style={styles.appBar}>
-      <AppBarTab to='/'> Home </AppBarTab>
-      <AppBarTab to='/login'> Login </AppBarTab>
-      <AppBarTab to='/signup'> Signup </AppBarTab>
-
-    </View>
-  );
-};
  */
 
 
 const AppBar = ({navigation}) => {
+  const route = useRoute();
+
+  const AppBarStyles = [styles.appBar];
+
+  // active && styles.active
+
   return (
-    <View style={styles.appBar}>
-      <Button onPress={() => navigation.navigate("Login")} title="Login" />
-      <Button onPress={() => navigation.navigate("Signup")} title="Signup" />
+    <View style={AppBarStyles}>
+      <Text
+        onPress={() => navigation.navigate("Login")}
+        style={route.name === "Login" ? styles.activeText : null}
+      >
+        Login
+      </Text>
+      <Text
+        onPress={() => navigation.navigate("/")}
+        style={route.name === "/" ? styles.activeText : null}
+      >
+        Home
+      </Text>
+      <Text
+        onPress={() => navigation.navigate("Signup")}
+        style={route.name === "Signup" ? styles.activeText : null}
+      >
+        Signup
+      </Text>
     </View>
   );
 };
@@ -42,8 +53,9 @@ const AppBar = ({navigation}) => {
 const styles = StyleSheet.create({
   appBar: {
     flexDirection: "row",
-    backgroundColor: theme.colors.backgroundColor,
+    backgroundColor: theme.colors.salmonBackground,
     fontWeight: theme.fontWeights.bold,
+    fontSize: theme.fontSizes.subheading ,
     paddingBottom: 10,
     paddingLeft: 10,
     position: "absolute",
@@ -54,6 +66,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
   },
+  activeText: {
+    color: '#ffff'
+  }
 });
 
 export default AppBar;
