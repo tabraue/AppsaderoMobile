@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, Alert } from 'react-native'
+import { View, Button, Alert } from 'react-native'
 import React from 'react'
 
 const ButtonStyled = ({title,color}) => {
@@ -8,9 +8,7 @@ const ButtonStyled = ({title,color}) => {
       title={title}
       color={color}
       onPress={() => Alert.alert('Button already')}
-    />
-
-      
+    /> 
     </View>
   )
 
