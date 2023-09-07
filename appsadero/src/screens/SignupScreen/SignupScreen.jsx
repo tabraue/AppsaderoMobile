@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 
-function HomeScreen(){
+function Signup(){
     return (
       <View style={styles.container}>
         <Text>Hola</Text>
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen
+export default Signup
 
 /* function HomeScreen (){
   return (

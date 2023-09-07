@@ -1,12 +1,9 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import TextStyled from "../textStyled/textStyled";
-import { Link, useLocation } from "react-router-native";
+import { View, StyleSheet, Pressable, Button } from "react-native";
 import theme from "../../../theme/theme";
 
-const AppBarTab = ({ children, to}) => {
-    const { pathname } = useLocation();
-    const active = pathname === to
+
+/* const AppBarTab = ({ active, children, to}) => {
 
     const textStyles = [
         styles.text,
@@ -30,10 +27,21 @@ const AppBar = () => {
     </View>
   );
 };
+ */
+
+
+const AppBar = ({navigation}) => {
+  return (
+    <View style={styles.appBar}>
+      <Button onPress={() => navigation.navigate("Login")} title="Login" />
+      <Button onPress={() => navigation.navigate("Signup")} title="Signup" />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   appBar: {
-    flexDirection: 'row',
+    flexDirection: "row",
     backgroundColor: theme.colors.backgroundColor,
     fontWeight: theme.fontWeights.bold,
     paddingBottom: 10,
@@ -43,8 +51,8 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 60,
-    alignItems: 'center',
-    justifyContent: 'space-evenly'
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
 });
 
