@@ -1,9 +1,8 @@
-import { View, TextInput, StyleSheet } from "react-native"; // Cambiado de 'react-native-web' a 'react-native'
+import { View, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import theme from "../../../theme/theme";
 
-const InputStyled = ({placeholder, secure}) => {
-
+const PasswordInput = ({placeholder, secure}) => {
   return (
     <View>
       <TextInput
@@ -11,7 +10,6 @@ const InputStyled = ({placeholder, secure}) => {
         placeholder={placeholder}
         secureTextEntry={secure}
         allowFontScaling
-        autoComplete="email"
       />
     </View>
   );
@@ -27,8 +25,8 @@ const styles = StyleSheet.create({
     width: 300,
     height: 50,
     fontSize: theme.fontSizes.body,
-    marginTop: 20
+    marginTop: 20,
   },
 });
 
-export default InputStyled;
+export default PasswordInput;

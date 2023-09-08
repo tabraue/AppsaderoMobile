@@ -30,6 +30,9 @@ const theme = {
     padding: 5,
     textAlign: "center",
   },
+  aligns: {
+    center: "center",
+  },
   margins: {
     top: Constants.statusBarHeight,
     // this margin top adjusts to any status bar depending on the device.

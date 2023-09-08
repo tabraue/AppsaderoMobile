@@ -3,18 +3,21 @@ import React from 'react'
 import theme from '../../../theme/theme'
 import InputStyled from '../../components/InputStyled/InputStyled'
 import ButtonStyled from '../../components/ButtonStyled/ButtonStyled'
+import PasswordInput from '../../components/PasswordInput/PasswordInput'
 
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
 
       <Text style={styles.title}>Login</Text>
-      <InputStyled placeholder={"Write your email"} />
-      <InputStyled placeholder={"Write your password"} secure={true} />
+      <InputStyled placeholder={"Escribe tu email"} />
+      <PasswordInput placeholder={"Escribe tu contraseña"} secure={true}/>
+
       <Text style={styles.text}>
-        Haven't you an account? <Text>{"  "}Click here</Text>
+        Aún no tengo una cuenta. <Text>Click aquí!</Text>
       </Text>
-      <ButtonStyled title="Submit" color={theme.colors.backgroundColor} />
+      <ButtonStyled title="Login" color={theme.colors.backgroundColor} />
+      
     </View>
   );
 }
