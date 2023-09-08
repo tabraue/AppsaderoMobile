@@ -18,7 +18,7 @@ const ButtonStyled = ({title, color, navigation, accessText}) => {
       style={styles.button}
       title={title}
       color={color}
-      onPress={() => Alert.alert('Button already')}/*  goToPage={pageName} */
+      /* onPress={() => Alert.alert('Button already')} *//*  goToPage={pageName} */
       accessibilityLabel={accessText}
     /> 
     </View>

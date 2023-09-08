@@ -16,6 +16,7 @@
     "expo-linking": "~5.0.2",
     "expo-router": "2.0.0",
     "expo-status-bar": "~1.6.0",
+    "formik": "^2.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.4",
@@ -44,6 +45,9 @@
       "standard",
       "standard-jsx",
       "standard-react"
-    ]
+    ],
+    "rules": {
+      "react/prop-types": "off"
+    }
   }
 }

@@ -1,8 +1,30 @@
-import { View, TextInput, StyleSheet } from "react-native"; // Cambiado de 'react-native-web' a 'react-native'
+import { TextInput, StyleSheet } from "react-native"; // Cambiado de 'react-native-web' a 'react-native'
 import React from "react";
 import theme from "../../../theme/theme";
+import { useField } from "formik";
 
-const InputStyled = ({placeholder, secure}) => {
+// INPUT TEXT USING HOOK USEFIELD by FORMIK
+const InputStyled = ({ name, ...props }) => {
+  const [field, meta, helpers] = useField(name);
+  return (
+    <TextInput
+      value={field.value}
+      onChangeText={(value) => helpers.setValue(value)}
+      allowFontScaling
+      style={styles.input}
+      {...props}
+    />
+  );
+};
+
+/* const InputStyled = ({style={}, placeholder, secure, autoComplete, autoCapitalize}) => {
+
+
+
+  //allowFontScaling adapta la fuente según dispositivo (ACCESIBILIDAD)
+  // autoComplete => hay que indicarle el tipo (ver documentación)
+  // autoCapitalize => 'none' , en otros casos se puede poner tipo sentencia 'sentences'
+
 
   return (
     <View>
@@ -11,12 +33,13 @@ const InputStyled = ({placeholder, secure}) => {
         placeholder={placeholder}
         secureTextEntry={secure}
         allowFontScaling
-        autoComplete="email"
+        autoComplete={autoComplete}
+        autoCapitalize={autoCapitalize}
       />
     </View>
   );
 };
-
+ */
 const styles = StyleSheet.create({
   input: {
     textAlign: theme.aligns.center,
@@ -27,7 +50,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 50,
     fontSize: theme.fontSizes.body,
-    marginTop: 20
+    marginTop: 20,
   },
 });
 

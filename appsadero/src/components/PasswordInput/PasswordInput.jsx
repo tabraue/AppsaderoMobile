@@ -1,22 +1,38 @@
-import { View, StyleSheet, TextInput } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 import React from "react";
 import theme from "../../../theme/theme";
+import { useField } from "formik";
 
-const PasswordInput = ({placeholder, secure}) => {
+// INPUT TEXT USING HOOK USEFIELD by FORMIK
+const PasswordInput = ({name, ...props}) => {
+  const [field, meta, helpers] = useField(name);
+    return (
+        <TextInput
+        value={field.value}
+        onChangeText={(value) => helpers.setValue(value)}
+        secureTextEntry
+        autoCapitalize="none"
+        allowFontScaling
+        style={styles.pass}
+        {...props}
+        />
+    );
+  };
+
+/* const PasswordInput = ({placeholder, secure}) => {
   return (
-    <View>
       <TextInput
         style={styles.input}
         placeholder={placeholder}
         secureTextEntry={secure}
         allowFontScaling
+        autoCapitalize="none"
       />
-    </View>
   );
-};
+}; */
 
 const styles = StyleSheet.create({
-  input: {
+  pass: {
     textAlign: theme.aligns.center,
     borderWidth: theme.border.width,
     borderColor: theme.colors.salmonBackground,
