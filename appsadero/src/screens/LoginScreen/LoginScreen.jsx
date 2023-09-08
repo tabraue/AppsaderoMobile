@@ -11,25 +11,24 @@ import InputStyled from "../../components/InputStyled/InputStyled";
 import ButtonStyled from "../../components/ButtonStyled/ButtonStyled";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import AppBar from "../../components/AppBar/AppBar";
-import { Formik, useField } from "formik";
+import { Formik } from "formik";
+import { loginValidationSchema } from "../../validationSchemas/login";
 
 const initialValues = {
   email: "",
   password: "",
 };
 
-
-
 const LoginScreen = ({ navigation }) => {
   return (
     <Formik
+      validationSchema={loginValidationSchema}
       initialValues={initialValues}
       onSubmit={(values) => console.log(values)}
     >
       {({ handleSubmit }) => {
         return (
           <SafeAreaView style={styles.container}>
-
             <Text style={styles.title}>Login</Text>
 
             <InputStyled
@@ -41,7 +40,7 @@ const LoginScreen = ({ navigation }) => {
 
             <PasswordInput
               name="password"
-              placeholder="Escribe tu contraseña" 
+              placeholder="Escribe tu contraseña"
             />
 
             <Text>
@@ -57,7 +56,6 @@ const LoginScreen = ({ navigation }) => {
               accessText="Botón para logearse en Appsadero"
               onPress={handleSubmit}
             />
-
             <AppBar navigation={navigation} />
           </SafeAreaView>
         );

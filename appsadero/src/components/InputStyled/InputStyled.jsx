@@ -1,4 +1,4 @@
-import { TextInput, StyleSheet } from "react-native"; // Cambiado de 'react-native-web' a 'react-native'
+import { TextInput, StyleSheet, Text } from "react-native"; // Cambiado de 'react-native-web' a 'react-native'
 import React from "react";
 import theme from "../../../theme/theme";
 import { useField } from "formik";
@@ -6,14 +6,20 @@ import { useField } from "formik";
 // INPUT TEXT USING HOOK USEFIELD by FORMIK
 const InputStyled = ({ name, ...props }) => {
   const [field, meta, helpers] = useField(name);
+  
   return (
+    <>
     <TextInput
       value={field.value}
-      onChangeText={(value) => helpers.setValue(value)}
+      onChangeText={(value) =>{ 
+        helpers.setValue(value)   
+      }}
       allowFontScaling
-      style={styles.input}
+      style={meta.error ? styles.error : styles.input}
       {...props}
     />
+      {meta.error && <Text style={styles.errorText}>{meta.error}</Text>}
+      </>
   );
 };
 
@@ -51,6 +57,20 @@ const styles = StyleSheet.create({
     height: 50,
     fontSize: theme.fontSizes.body,
     marginTop: 20,
+  },
+  error: {
+    textAlign: theme.aligns.center,
+    borderWidth: theme.border.width,
+    borderColor: theme.colors.error,
+    borderRadius: theme.border.borderRadius,
+    padding: theme.border.padding,
+    width: 300,
+    height: 50,
+    fontSize: theme.fontSizes.subheading,
+    marginTop: 20,
+  },
+  errorText: {
+    color: theme.colors.error,
   },
 });
 
