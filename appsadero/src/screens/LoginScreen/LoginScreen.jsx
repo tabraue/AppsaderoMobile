@@ -4,16 +4,18 @@ import theme from '../../../theme/theme'
 import InputStyled from '../../components/InputStyled/InputStyled'
 import ButtonStyled from '../../components/ButtonStyled/ButtonStyled'
 import PasswordInput from '../../components/PasswordInput/PasswordInput'
+import AppBar from '../../components/AppBar/AppBar'
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <AppBar navigation={navigation}/>
 
       <Text style={styles.title}>Login</Text>
       <InputStyled placeholder={"Escribe tu email"} />
       <PasswordInput placeholder={"Escribe tu contraseña"} secure={true}/>
 
-      <Text style={styles.text}>
+      <Text>
         Aún no tengo una cuenta. <Text>Click aquí!</Text>
       </Text>
       <ButtonStyled title="Login" color={theme.colors.backgroundColor} />
@@ -32,13 +34,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: theme.fontSizes.heading,
     fontWeight: theme.fontWeights.bold,
-    marginBottom: 10
+    marginBottom: 10,
   },
   text: {
     fontSize: theme.fontSizes.body,
     textAlign: 'left'
-
-
   }
 });
 

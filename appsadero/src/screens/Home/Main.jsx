@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, Button} from "react-native";
-import AppBar from "./src/components/AppBar/AppBar";
-import theme from "./theme/theme";
+import AppBar from "../../components/AppBar/AppBar";
+import theme from "../../../theme/theme";
 
 
 const Main = ({navigation}) => {

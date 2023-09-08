@@ -18,8 +18,7 @@ import { useRoute } from "@react-navigation/native";
 }
  */
 
-
-const AppBar = ({navigation}) => {
+const AppBar = ({ navigation }) => {
   const route = useRoute();
 
   const AppBarStyles = [styles.appBar];
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: theme.colors.salmonBackground,
     fontWeight: theme.fontWeights.bold,
-    fontSize: theme.fontSizes.subheading ,
+    fontSize: theme.fontSizes.subheading,
     paddingBottom: 10,
     paddingLeft: 10,
     position: "absolute",
@@ -67,8 +66,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   activeText: {
-    color: '#ffff'
-  }
+    color: "#ffff",
+  },
 });
 
 export default AppBar;
