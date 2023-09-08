@@ -1,18 +1,18 @@
 import React from "react";
-import { View, StyleSheet, Text, Button} from "react-native";
+import { View, StyleSheet, Text, Button, SafeAreaView} from "react-native";
 import AppBar from "../../components/AppBar/AppBar";
 import theme from "../../../theme/theme";
 
 
 const Main = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>HOME</Text>
 
       <AppBar navigation={navigation}/>
 
      
-    </View>
+    </SafeAreaView>
   );
 };
 

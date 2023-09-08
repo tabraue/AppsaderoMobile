@@ -1,14 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import theme from '../../../theme/theme';
+import AppBar from '../../components/AppBar/AppBar';
 
 
-function Signup(){
+function Signup({navigation}){
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+      <AppBar navigation={navigation} />
+
         <Text>SIGNUP</Text>
 
-      </View>
+      </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({

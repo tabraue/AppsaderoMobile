@@ -26,7 +26,7 @@ const theme = {
   },
   border: {
     width: 2,
-    borderRadius: 6,
+    borderRadius: 9,
     padding: 5,
     textAlign: "center",
   },

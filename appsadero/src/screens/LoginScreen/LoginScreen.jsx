@@ -1,35 +1,46 @@
-import { View, Text, StyleSheet} from 'react-native'
-import React from 'react'
-import theme from '../../../theme/theme'
-import InputStyled from '../../components/InputStyled/InputStyled'
-import ButtonStyled from '../../components/ButtonStyled/ButtonStyled'
-import PasswordInput from '../../components/PasswordInput/PasswordInput'
-import AppBar from '../../components/AppBar/AppBar'
+import {
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  TouchableHighlight,
+  View,
+} from "react-native";
+import React from "react";
+import theme from "../../../theme/theme";
+import InputStyled from "../../components/InputStyled/InputStyled";
+import ButtonStyled from "../../components/ButtonStyled/ButtonStyled";
+import PasswordInput from "../../components/PasswordInput/PasswordInput";
+import AppBar from "../../components/AppBar/AppBar";
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <AppBar navigation={navigation}/>
+    <SafeAreaView style={styles.container}>
+      <AppBar navigation={navigation} />
 
       <Text style={styles.title}>Login</Text>
       <InputStyled placeholder={"Escribe tu email"} />
-      <PasswordInput placeholder={"Escribe tu contraseña"} secure={true}/>
-
+      <PasswordInput placeholder={"Escribe tu contraseña"} secure={true} />
       <Text>
-        Aún no tengo una cuenta. <Text>Click aquí!</Text>
+        Aún no tengo una cuenta.
+        <TouchableHighlight onPress={ () => navigation.navigate('Signup') }>
+          <Text style={styles.button}>Click aquí!</Text>
+        </TouchableHighlight>
       </Text>
-      <ButtonStyled title="Login" color={theme.colors.backgroundColor} />
-      
-    </View>
+      <ButtonStyled
+        title="Login"
+        color={theme.colors.darkBlue}
+        accessText="Botón para logearse en Appsadero"
+      />
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    gap: 10
+    gap: 10,
   },
   title: {
     fontSize: theme.fontSizes.heading,
@@ -38,8 +49,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: theme.fontSizes.body,
-    textAlign: 'left'
-  }
+    textAlign: "left",
+  },
+  button: {
+    alignItems: "center",
+    padding: 10,
+  },
 });
 
-export default LoginScreen
+export default LoginScreen;
