@@ -1,7 +1,8 @@
 import React from "react";
-import { View, StyleSheet, Pressable, Button, Text } from "react-native";
+import { View, StyleSheet, Pressable, Button, Text, TouchableOpacity } from "react-native";
 import theme from "../../../theme/theme";
 import { useRoute } from "@react-navigation/native";
+import { HomeIcon } from "../../icons/Icons";
 
 /* const AppBarTab = ({ active, children, to}) => {
 
@@ -33,12 +34,14 @@ const AppBar = ({ navigation }) => {
       >
         Login
       </Text>
-      <Text
+      
+      <TouchableOpacity
         onPress={() => navigation.navigate("/")}
-        style={route.name === "/" ? styles.activeText : null}
+/*         style={route.name === "/" ? styles.activeText : null} */
       >
-        Home
-      </Text>
+        <HomeIcon color={route.name === "/" ? "#ffff" : null}/>
+      </TouchableOpacity>
+
       <Text
         onPress={() => navigation.navigate("Signup")}
         style={route.name === "Signup" ? styles.activeText : null}
