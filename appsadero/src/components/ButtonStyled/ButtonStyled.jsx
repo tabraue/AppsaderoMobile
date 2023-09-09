@@ -2,7 +2,7 @@ import { View, Button, Alert, StyleSheet } from 'react-native'
 import React from 'react'
 import theme from '../../../theme/theme'
 
-const ButtonStyled = ({title, color, navigation, accessText}) => {
+const ButtonStyled = ({title, color, navigation, accessText, ...props}) => {
 
 
   // se le pasa al onPress con arrow function y el parametro es el nombre de la pag o 
@@ -20,6 +20,7 @@ const ButtonStyled = ({title, color, navigation, accessText}) => {
       color={color}
       /* onPress={() => Alert.alert('Button already')} *//*  goToPage={pageName} */
       accessibilityLabel={accessText}
+      {...props}
     /> 
     </View>
   )

@@ -4,6 +4,8 @@ import {
   SafeAreaView,
   TouchableHighlight,
   View,
+  Button,
+  Alert,
 } from "react-native";
 import React from "react";
 import theme from "../../../theme/theme";
@@ -23,6 +25,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <Formik
       validationSchema={loginValidationSchema}
+       validateOnChange={false}  //=> esto hace que sólo valide al clicar sobre botón, NO valida mientras onChange!*/
       initialValues={initialValues}
       onSubmit={(values) => console.log(values)}
     >
@@ -56,6 +59,7 @@ const LoginScreen = ({ navigation }) => {
               accessText="Botón para logearse en Appsadero"
               onPress={handleSubmit}
             />
+
             <AppBar navigation={navigation} />
           </SafeAreaView>
         );
