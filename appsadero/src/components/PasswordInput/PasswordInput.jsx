@@ -1,25 +1,40 @@
-import { StyleSheet, Text, TextInput } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useState } from "react";
 import theme from "../../../theme/theme";
 import { useField } from "formik";
+import { CloseEyeIcon, OpenEyeIcon } from "../../icons/Icons";
 
 // INPUT TEXT USING HOOK USEFIELD by FORMIK
 const PasswordInput = ({ name, ...props }) => {
   const [field, meta, helpers] = useField(name);
+  const [visible, setVisible] = useState(false);
 
   return (
-    <>
+    <View>
       <TextInput
         value={field.value}
         onChangeText={(value) => helpers.setValue(value)}
-        secureTextEntry
+        secureTextEntry={!visible}
         autoCapitalize="none"
         allowFontScaling
+        endIconMode={name}
         style={meta.error ? styles.error : styles.pass}
         {...props}
       />
+      <TouchableOpacity
+        onPress={() => setVisible(!visible)}
+        style={styles.icon}
+      >
+        {visible ? <OpenEyeIcon /> : <CloseEyeIcon />}
+      </TouchableOpacity>
       {meta.error && <Text style={styles.errorText}>{meta.error}</Text>}
-    </>
+    </View>
   );
 };
 
@@ -49,6 +64,12 @@ const styles = StyleSheet.create({
     color: theme.colors.error,
     fontSize: 12,
     textAlign: theme.aligns.center,
+  },
+  icon: {
+    position: "absolute",
+    right: 15,
+    top: 35,
+    
   },
 });
 

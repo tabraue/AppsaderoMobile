@@ -3,9 +3,6 @@ import {
   StyleSheet,
   SafeAreaView,
   TouchableHighlight,
-  View,
-  Button,
-  Alert,
 } from "react-native";
 import React from "react";
 import theme from "../../../theme/theme";
@@ -33,7 +30,6 @@ const LoginScreen = ({ navigation }) => {
         return (
           <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Login</Text>
-
             <InputStyled
               name="email"
               placeholder="Escribe tu email"
