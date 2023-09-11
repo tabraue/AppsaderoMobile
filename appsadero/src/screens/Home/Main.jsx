@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet, Text, Button, SafeAreaView} from "react-native";
+import { View, StyleSheet, Text, SafeAreaView} from "react-native";
 import AppBar from "../../components/AppBar/AppBar";
 import theme from "../../../theme/theme";
-import { AddFriendIcon, ArrowLeftIcon, ArrowRightIcon, BbqIcon, FilterIcon, FriendsIcon, MoneyIcon, NotificationIcon } from "../../icons/Icons";
+import Header from "../../components/Header/Header";
 
 
 const Main = ({navigation}) => {
@@ -10,10 +10,8 @@ const Main = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <Text>HOME</Text>
 
-
       <AppBar navigation={navigation}/>
 
-     
     </SafeAreaView>
   );
 };
