@@ -2,6 +2,7 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
+  View,
   TouchableHighlight,
 } from "react-native";
 import React from "react";
@@ -22,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <Formik
       validationSchema={loginValidationSchema}
-       validateOnChange={false}  //=> esto hace que sólo valide al clicar sobre botón, NO valida mientras onChange!*/
+      validateOnChange={false} //=> esto hace que sólo valide al clicar sobre botón, NO valida mientras onChange!*/
       initialValues={initialValues}
       onSubmit={(values) => console.log(values)}
     >
@@ -41,13 +42,16 @@ const LoginScreen = ({ navigation }) => {
               name="password"
               placeholder="Escribe tu contraseña"
             />
-
-            <Text>
-              Aún no tengo una cuenta.
-              <TouchableHighlight onPress={() => navigation.navigate("Signup")}>
-                <Text style={styles.button}>Click aquí!</Text>
-              </TouchableHighlight>
-            </Text>
+            <View style={styles.redirect}>
+              <Text>
+                Aún no tengo una cuenta{" "}
+                <TouchableHighlight
+                  onPress={() => navigation.navigate("Signup")}
+                >
+                  <Text style={styles.textButton}>Click aquí!</Text>
+                </TouchableHighlight>
+              </Text>
+            </View>
 
             <ButtonStyled
               title="Login"
@@ -71,6 +75,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
   },
+  redirect: {
+    justifyContent: "center",
+    gap: 4,
+  },
   title: {
     fontSize: theme.fontSizes.heading,
     fontWeight: theme.fontWeights.bold,
@@ -80,9 +88,10 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.body,
     textAlign: "left",
   },
-  button: {
+  textButton: {
     alignItems: "center",
-    padding: 10,
+    color: theme.colors.darkBlue,
+    textDecorationLine: "underline",
   },
 });
 
