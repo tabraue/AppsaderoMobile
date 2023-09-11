@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, Button, SafeAreaView} from "react-native";
 import AppBar from "../../components/AppBar/AppBar";
 import theme from "../../../theme/theme";
-import { BbqIcon, MoneyIcon } from "../../icons/Icons";
+import { AddFriendIcon, ArrowLeftIcon, ArrowRightIcon, BbqIcon, FilterIcon, FriendsIcon, MoneyIcon, NotificationIcon } from "../../icons/Icons";
 
 
 const Main = ({navigation}) => {
@@ -10,10 +10,6 @@ const Main = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <Text>HOME</Text>
 
-      <View>
-        <BbqIcon/>
-        <MoneyIcon/>
-      </View>
 
       <AppBar navigation={navigation}/>
 
