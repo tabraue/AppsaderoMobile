@@ -1,14 +1,14 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
+import theme from '../../../theme/theme';
 
 const StatusBarCustomized = () => {
   return (
     <View>
       <StatusBar
+        backgroundColor={theme.colors.salmonBackground}
         barStyle="dark-content"
-        hidden={false}
-        backgroundColor="#00BCD4"
         translucent={true}
       />
     </View>
