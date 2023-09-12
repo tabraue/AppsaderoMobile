@@ -5,7 +5,7 @@ import {
   View,
   TouchableHighlight,
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import theme from "../../../theme/theme";
 import InputStyled from "../../components/InputStyled/InputStyled";
 import ButtonStyled from "../../components/ButtonStyled/ButtonStyled";
@@ -17,6 +17,7 @@ import { useQuery } from "react-query";
 import { loginWeb, userLogin } from "../../services/auth.service";
 
 import { useMutation } from "react-query";
+import { AuthContext } from "../../context/AuthContext";
 
 const initialValues = {
   email: "",
@@ -25,22 +26,22 @@ const initialValues = {
 
 const LoginScreen = ({ navigation }) => {
   //const { mutate, isLoading, isError } = useMutation(loginWeb);
-  const { mutate, isLoading, isError } = useMutation(
+/*   const { mutate, isLoading, isError } = useMutation(
     loginWeb
-  );
+  ); */
 
   /* const handleSubmit = (values) => {
     // Llamada a la función de mutación loginWeb
     mutate(values);
   }; */
 
-  const handleSubmit = async (initialValues) => {
+/*   const handleSubmit = async (initialValues) => {
     await loginWeb(initialValues.email, initialValues.password)
     mutate(initialValues);
   }
   
   if (isLoading) return <Text>Loading...</Text>;
-  if (isError) return <Text>Something went wrong: {error.message}</Text>;
+  if (isError) return <Text>Something went wrong: {error.message}</Text>; */
   
 
   /*
@@ -67,17 +68,25 @@ const LoginScreen = ({ navigation }) => {
 
   /* const { isLoading, isError, data, error } = useQuery("login", tryLogin) */
 
+
+  const {test} = useContext(AuthContext)
+
+
+
   return (
     <Formik
       validationSchema={loginValidationSchema}
       validateOnChange={false} //=> esto hace que sólo valide al clicar sobre botón, NO valida mientras onChange!*/
       initialValues={initialValues}
-      onSubmit={handleSubmit} // => values format {"email": "diana@email.com", "password": "unaMayus1."}
+      onSubmit={(values) =>  console.log(values)} // => values format {"email": "diana@email.com", "password": "unaMayus1."}
     >
       {({ handleSubmit }) => {
         return (
           <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Login</Text>
+
+            <Text>{test}</Text>
+
             <InputStyled
               name="email"
               placeholder="Escribe tu email"

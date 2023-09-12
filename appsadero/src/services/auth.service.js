@@ -2,13 +2,13 @@
 //import EncryptedStorage from "react-native-encrypted-storage/lib/typescript/EncryptedStorage";
 import { api } from "./api";
 
- export const loginWeb = async (email, password) => {
+ /*export const loginWeb = async (email, password) => {
   try {
     const { data } = await api.post("/auth/login", { email, password });
-/*     localStorage.setItem("token", data.userDetails.token);
+   localStorage.setItem("token", data.userDetails.token);
     localStorage.setItem("first_name", data.userDetails.first_name);
     localStorage.setItem("nickname", data.userDetails.nickname);
-    return true; */
+    return true;
     if (data){
       const { data } = await EncryptedStorage.setItem(
         "user_session",
@@ -25,7 +25,7 @@ import { api } from "./api";
   } catch (err) {
     return false;
   }
-};
+};*/
 
 /* export const userLogin = async () => {
   try {
