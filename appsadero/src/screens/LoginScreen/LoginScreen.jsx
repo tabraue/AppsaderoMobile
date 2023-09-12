@@ -69,7 +69,7 @@ const LoginScreen = ({ navigation }) => {
   /* const { isLoading, isError, data, error } = useQuery("login", tryLogin) */
 
 
-  const {test} = useContext(AuthContext)
+  const {login} = useContext(AuthContext)
 
 
 
@@ -80,12 +80,10 @@ const LoginScreen = ({ navigation }) => {
       initialValues={initialValues}
       onSubmit={(values) =>  console.log(values)} // => values format {"email": "diana@email.com", "password": "unaMayus1."}
     >
-      {({ handleSubmit }) => {
+      {({  }) => {
         return (
           <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Login</Text>
-
-            <Text>{test}</Text>
 
             <InputStyled
               name="email"
@@ -98,6 +96,7 @@ const LoginScreen = ({ navigation }) => {
               name="password"
               placeholder="Escribe tu contraseña"
             />
+            
             <View style={styles.redirect}>
               <Text>
                 Aún no tengo una cuenta{" "}
@@ -113,7 +112,7 @@ const LoginScreen = ({ navigation }) => {
               title="Login"
               color={theme.colors.darkBlue}
               accessText="Botón para logearse en Appsadero"
-              onPress={handleSubmit}
+              onPress={() => login()}
             />
 
             <AppBar navigation={navigation} />

@@ -1,8 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Text, SafeAreaView} from "react-native";
+import {  StyleSheet, Text, SafeAreaView} from "react-native";
 import AppBar from "../../components/AppBar/AppBar";
 import theme from "../../../theme/theme";
-import Header from "../../components/Header/Header";
 
 
 const Main = ({navigation}) => {
