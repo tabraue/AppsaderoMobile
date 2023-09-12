@@ -26,22 +26,23 @@ const initialValues = {
 
 const LoginScreen = ({ navigation }) => {
   //const { mutate, isLoading, isError } = useMutation(loginWeb);
-/*   const { mutate, isLoading, isError } = useMutation(
-    loginWeb
-  ); */
+   //const { mutate, isLoading, isError } = useMutation(handleSubmit);
 
   /* const handleSubmit = (values) => {
     // Llamada a la función de mutación loginWeb
     mutate(values);
   }; */
 
-/*   const handleSubmit = async (initialValues) => {
-    await loginWeb(initialValues.email, initialValues.password)
-    mutate(initialValues);
+   const handleSubmit = async (values) => {
+
+    const res = await loginWeb(values)
+    //mutate(values);
+
+    console.log('respuesta handlesubmit',res)
   }
   
-  if (isLoading) return <Text>Loading...</Text>;
-  if (isError) return <Text>Something went wrong: {error.message}</Text>; */
+  //if (isLoading) return <Text>Loading...</Text>;
+  //if (isError) return <Text>Something went wrong: {isError.message}</Text>; 
   
 
   /*
@@ -69,7 +70,7 @@ const LoginScreen = ({ navigation }) => {
   /* const { isLoading, isError, data, error } = useQuery("login", tryLogin) */
 
 
-  const {login} = useContext(AuthContext)
+ // const {login} = useContext(AuthContext)
 
 
 
@@ -78,9 +79,9 @@ const LoginScreen = ({ navigation }) => {
       validationSchema={loginValidationSchema}
       validateOnChange={false} //=> esto hace que sólo valide al clicar sobre botón, NO valida mientras onChange!*/
       initialValues={initialValues}
-      onSubmit={(values) =>  console.log(values)} // => values format {"email": "diana@email.com", "password": "unaMayus1."}
+      onSubmit={handleSubmit} // => values format {"email": "diana@email.com", "password": "unaMayus1."}
     >
-      {({  }) => {
+      {({ handleSubmit }) => {
         return (
           <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Login</Text>
@@ -96,7 +97,7 @@ const LoginScreen = ({ navigation }) => {
               name="password"
               placeholder="Escribe tu contraseña"
             />
-            
+
             <View style={styles.redirect}>
               <Text>
                 Aún no tengo una cuenta{" "}
@@ -112,7 +113,7 @@ const LoginScreen = ({ navigation }) => {
               title="Login"
               color={theme.colors.darkBlue}
               accessText="Botón para logearse en Appsadero"
-              onPress={() => login()}
+              onPress={handleSubmit}
             />
 
             <AppBar navigation={navigation} />
