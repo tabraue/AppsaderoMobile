@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Main from "./src/screens/Home/Main";
@@ -14,12 +14,15 @@ const Stack = createNativeStackNavigator();
 
 
 const App = () => {
+  const [token, setToken] = useState(true)
+
   return (
     <QueryClientProvider client={new QueryClient()}>
       <NavigationContainer>
-        <StatusBarCustomized />
-        <View style={{ flex: 1 }}>
-          <Header />
+      <StatusBarCustomized />
+        <View style={{  flex: 1  }}>
+          {token ? <Header title="APPSADERO" token='true'/> : <Header title="APPSADERO" />}
+
           <Stack.Navigator initialRouteName="/">
             <Stack.Screen
               name="/"
