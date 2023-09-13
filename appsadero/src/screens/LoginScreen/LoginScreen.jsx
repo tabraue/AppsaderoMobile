@@ -34,11 +34,11 @@ const LoginScreen = ({ navigation }) => {
   }; */
 
   const mutation = useMutation( 
-    async function (values){
+     async function (values){
       console.log('linea 38',values)
       const res = await loginWeb(values)
       if(res) console.log('yeah')
-    }, {
+    } , {
     onMutate: function (){
       console.log('lanzamos petición')
     },
@@ -54,7 +54,7 @@ const LoginScreen = ({ navigation }) => {
     });
 
   const handleSubmit = (values) => {
-    mutation.mutate({email: values.email, password: values.password}, {
+    mutation.mutate(/* {email: values.email, password: values.password} */values, {
       onSuccess: function(json){
         console.log('json en handlesubmit', json)
         //navigation.navigate('/')

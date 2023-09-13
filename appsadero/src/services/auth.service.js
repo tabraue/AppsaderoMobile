@@ -15,7 +15,7 @@ export const loginWeb = async (info) => {
 
     if (data){
       console.log('esto es data si algun dia llega', data)
-      return true
+      return data
     }
     
 

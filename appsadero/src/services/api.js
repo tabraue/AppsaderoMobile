@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL:"http://169.254.171.105:3000/api",
+    baseURL:"http://10.0.2.2:3000/api",
     //timeout: 3000
+    //10.0.2.2  ==> 'localhost' del movil
 })
