@@ -26,24 +26,44 @@ const initialValues = {
 
 const LoginScreen = ({ navigation }) => {
   //const { mutate, isLoading, isError } = useMutation(loginWeb);
-   //const { mutate, isLoading, isError } = useMutation(handleSubmit);
+  //const { mutate, isLoading, isError } = useMutation(handleSubmit);
 
   /* const handleSubmit = (values) => {
     // Llamada a la función de mutación loginWeb
     mutate(values);
   }; */
 
-   const handleSubmit = async (values) => {
+  const mutation = useMutation( 
+    async function (values){
+      console.log('linea 38',values)
+      const res = await loginWeb(values)
+      if(res) console.log('yeah')
+    }, {
+    onMutate: function (){
+      console.log('lanzamos petición')
+    },
+    onSuccess: function (json){
+      console.log('onsuccess',json)
+    },
+    onError: function (error){
+      console.log(error)
+    },
+    onSettled: function() {
+      console.log('on settled')
+    }
+    });
 
-    const res = await loginWeb(values)
-    //mutate(values);
+  const handleSubmit = (values) => {
+    mutation.mutate({email: values.email, password: values.password}, {
+      onSuccess: function(json){
+        console.log('json en handlesubmit', json)
+        //navigation.navigate('/')
+      }
+    })
+  };
 
-    console.log('respuesta handlesubmit',res)
-  }
-  
   //if (isLoading) return <Text>Loading...</Text>;
-  //if (isError) return <Text>Something went wrong: {isError.message}</Text>; 
-  
+  //if (isError) return <Text>Something went wrong: {isError.message}</Text>;
 
   /*
   const tryLogin = async (email, password) => {
@@ -69,10 +89,7 @@ const LoginScreen = ({ navigation }) => {
 
   /* const { isLoading, isError, data, error } = useQuery("login", tryLogin) */
 
-
- // const {login} = useContext(AuthContext)
-
-
+  // const {login} = useContext(AuthContext)
 
   return (
     <Formik

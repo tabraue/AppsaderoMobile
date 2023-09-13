@@ -4,14 +4,18 @@ import { api } from "./api";
 
 export const loginWeb = async (info) => {
   console.log('info de login web',info)
-
   try {
-    let email = info.email
-    let password = info.password
-    const { data } = await api.post("/auth/login", { email, password });
+    console.log('e n el try', typeof info.email)
+/*     let email = info.email
+    let password = info.password */ 
+    const { data } = await api.post("/auth/login", {
+      email: info.email,
+      password: info.password
+    });
 
     if (data){
-      console.log(data)
+      console.log('esto es data si algun dia llega', data)
+      return true
     }
     
 
@@ -35,6 +39,7 @@ export const loginWeb = async (info) => {
     } */
   } catch (err) {
     console.log('error de aqui', err)
+    console.error(err)
     return false;
   }
 };
