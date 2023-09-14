@@ -27,11 +27,9 @@ const initialValues = {
 
 const SignupScreen = ({ navigation }) => {
 
-  const mutation = useMutation(
-    async function (values) {
-      console.log('En mutation', values);
-      const response = await userSignup(values);
-      if (response) console.log("YEP!");
+  const mutation = useMutation(async function (values) {
+      const res = await userSignup(values)
+      if (res) return res;
     },
     {
       onMutate: function () {
@@ -50,7 +48,7 @@ const SignupScreen = ({ navigation }) => {
   );
 
   const handleSubmit = (values) => {
-    console.log("Aquí **52**", values);
+    console.log("Aquí **53**", values);
     mutation.mutate(values, {
       onSuccess: function (json) {
         console.log("json en handlesubmit", json);

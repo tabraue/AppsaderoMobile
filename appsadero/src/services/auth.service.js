@@ -42,20 +42,22 @@ export const loginWeb = async (info) => {
 }; */
 
 export const userSignup = async (variables) => {
-  console.log('principio del servicio', variables)
+  console.log('principio del servicio')
   try {
-    console.log('dentro del try')
+    console.log('dentro del try', variables)
     const {data} = await api.post("/auth/signup", {
       first_name: variables.first_name,
       nickname: variables.nickname,
       email: variables.email,
       password: variables.password,
     });
-    console.log('Crema!!')
-    return data;
-    //localStorage.setItem('token', data.token)
+    
+    console.log('Crema!!', data)
+    return true
+     
+    
   } catch (err) {
-    console.error(err)
+    console.error('Error al registrar usuario', err)
     return false;
     
   }
