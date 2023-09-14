@@ -1,52 +1,87 @@
 import React from "react";
+import {
+  Alert,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
 import { Formik } from "formik";
-import { Alert, SafeAreaView, StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { useMutation } from "react-query";
+import { signupValidationSchema } from "../../validationSchemas/login";
+
 import theme from "../../../theme/theme";
 import AppBar from "../../components/AppBar/AppBar";
 import InputStyled from "../../components/InputStyled/InputStyled";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import ButtonStyled from "../../components/ButtonStyled/ButtonStyled";
-import { signupValidationSchema } from "../../validationSchemas/login";
+import { userSignup } from "../../services/auth.service";
 
-function Signup({ navigation }) {
-  const initialValues = {
-    email: "",
-    password: "",
+const initialValues = {
+  email: "",
+  password: "",
+  nickname: "",
+  first_name: "",
+};
+
+const SignupScreen = ({ navigation }) => {
+
+  const mutation = useMutation(
+    async function (values) {
+      console.log('En mutation', values);
+      const response = await userSignup(values);
+      if (response) console.log("YEP!");
+    },
+    {
+      onMutate: function () {
+        console.log("Lanzamos petición de registro");
+      },
+      onSuccess: function (json) {
+        console.log("Bro or Sis, user registered", json);
+      },
+      onError: function (error) {
+        console.log(error);
+      },
+      onSettled: function () {
+        console.log("on settled");
+      },
+    }
+  );
+
+  const handleSubmit = (values) => {
+    console.log("Aquí **52**", values);
+    mutation.mutate(values, {
+      onSuccess: function (json) {
+        console.log("json en handlesubmit", json);
+      },
+    });
   };
+  
+
   return (
     <Formik
       validationSchema={signupValidationSchema}
+      validateOnChange={false}
       initialValues={initialValues}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={handleSubmit}
     >
-      {({handleSubmit}) => {
+      {({ handleSubmit }) => {
         return (
           <SafeAreaView style={styles.container}>
-            <AppBar navigation={navigation} />
+            <Text style={styles.title}>Signup</Text>
 
-            <Text style={styles.title}>SIGNUP</Text>
-            <View style={styles.form}>
-              <InputStyled
-                name="email"
-                placeholder="Escribe tu email"
-                autoComplete="email"
-                autoCapitalize="none"
-              />
-              <InputStyled name="name" placeholder="Introduce tu nombre" />
-              <InputStyled
-                name="nickname"
-                placeholder="Introduce tu nickname"
-              />
-              <PasswordInput
-                name="password"
-                placeholder="Escribe tu contraseña"
-              />
-            </View>
-            <ButtonStyled
-              title="Submit"
-              color={theme.colors.darkBlue}
-              accessText="Botón para registrarse en Appsadero"
-              onPress={handleSubmit}
+            <InputStyled
+              name="email"
+              placeholder="Escribe tu email"
+              autoComplete="email"
+              autoCapitalize="none"
+            />
+            <InputStyled name="first_name" placeholder="Introduce tu nombre" />
+            <InputStyled name="nickname" placeholder="Introduce tu nickname" />
+            <PasswordInput
+              name="password"
+              placeholder="Escribe tu contraseña"
             />
             <View style={styles.redirect}>
               <Text>
@@ -58,25 +93,32 @@ function Signup({ navigation }) {
                 </TouchableHighlight>
               </Text>
             </View>
+
+            <ButtonStyled
+              title="Submit"
+              color={theme.colors.darkBlue}
+              accessText="Botón para registrarse en Appsadero"
+              onPress={handleSubmit}
+            
+            />
+            <AppBar navigation={navigation} />
           </SafeAreaView>
         );
-
       }}
     </Formik>
   );
-}
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: 'center',
+    justifyContent: "center",
     gap: 10,
-    paddingTop: theme.margins.top +10
-
+    paddingTop: theme.margins.top + 10,
   },
   form: {
     marginTop: 10,
-    justifyContent: 'center'
+    justifyContent: "center",
   },
   redirect: {
     justifyContent: "center",
@@ -96,9 +138,6 @@ const styles = StyleSheet.create({
     color: theme.colors.darkBlue,
     textDecorationLine: "underline",
   },
- 
 });
 
-export default Signup;
-
-
+export default SignupScreen;

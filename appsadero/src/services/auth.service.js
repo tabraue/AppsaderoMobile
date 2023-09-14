@@ -65,17 +65,22 @@ export const loginWeb = async (info) => {
   }
 }; */
 
-export const userSignup = async (first_name, nickname, email, password) => {
+export const userSignup = async (variables) => {
+  console.log('principio del servicio', variables)
   try {
-    await api.post("/auth/signup", {
-      first_name: first_name,
-      nickname: nickname,
-      email: email,
-      password: password,
+    console.log('dentro del try')
+    const {data} = await api.post("/auth/signup", {
+      first_name: variables.first_name,
+      nickname: variables.nickname,
+      email: variables.email,
+      password: variables.password,
     });
-    return true;
+    console.log('Crema!!')
+    return data;
     //localStorage.setItem('token', data.token)
   } catch (err) {
-    return err;
+    console.error(err)
+    return false;
+    
   }
 };
