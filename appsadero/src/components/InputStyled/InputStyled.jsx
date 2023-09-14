@@ -13,6 +13,7 @@ const InputStyled = ({ name, ...props }) => {
         value={field.value}
         onChangeText={(value) => helpers.setValue(value)}
         allowFontScaling
+        textAlign="center"
         style={meta.error ? styles.error : styles.input}
         {...props}
       />

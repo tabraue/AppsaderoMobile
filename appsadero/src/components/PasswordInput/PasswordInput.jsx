@@ -24,6 +24,8 @@ const PasswordInput = ({ name, ...props }) => {
         autoCapitalize="none"
         allowFontScaling
         endIconMode={name}
+        textAlign="center"
+        autoComplete="off"
         style={meta.error ? styles.error : styles.pass}
         {...props}
       />

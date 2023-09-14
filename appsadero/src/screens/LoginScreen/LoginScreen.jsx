@@ -4,20 +4,21 @@ import {
   SafeAreaView,
   View,
   TouchableHighlight,
+  ActivityIndicator,
 } from "react-native";
-import React, { useContext } from "react";
+import React, { useState } from "react";
+import { useMutation } from "react-query";
+import { Formik } from "formik";
+import Toast from "react-native-root-toast";
+
+import { loginValidationSchema } from "../../validationSchemas/login";
+import { loginWeb } from "../../services/auth.service";
 import theme from "../../../theme/theme";
+
 import InputStyled from "../../components/InputStyled/InputStyled";
 import ButtonStyled from "../../components/ButtonStyled/ButtonStyled";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import AppBar from "../../components/AppBar/AppBar";
-import { Formik } from "formik";
-import { loginValidationSchema } from "../../validationSchemas/login";
-import { useQuery } from "react-query";
-import { loginWeb, userLogin } from "../../services/auth.service";
-
-import { useMutation } from "react-query";
-import { AuthContext } from "../../context/AuthContext";
 
 const initialValues = {
   email: "",
@@ -25,83 +26,68 @@ const initialValues = {
 };
 
 const LoginScreen = ({ navigation }) => {
-  //const { mutate, isLoading, isError } = useMutation(loginWeb);
-  //const { mutate, isLoading, isError } = useMutation(handleSubmit);
+  const [showActivityIndicator, setShowActivityIndicator] = useState(false);
 
-  /* const handleSubmit = (values) => {
-    // Llamada a la función de mutación loginWeb
-    mutate(values);
-  }; */
-
-  const mutation = useMutation( 
-     async function (values){
-      console.log('linea 38',values)
-      const res = await loginWeb(values)
-      if(res) console.log('yeah')
-    } , {
-    onMutate: function (){
-      console.log('lanzamos petición')
-    },
-    onSuccess: function (json){
-      console.log('onsuccess',json)
-    },
-    onError: function (error){
-      console.log(error)
-    },
-    onSettled: function() {
-      console.log('on settled')
-    }
-    });
+  const mutation = useMutation(async function (values) {
+    setShowActivityIndicator(true);
+    const res = await loginWeb(values);
+    if (res) return res;
+  });
 
   const handleSubmit = (values) => {
-    mutation.mutate(/* {email: values.email, password: values.password} */values, {
-      onSuccess: function(json){
-        console.log('json en handlesubmit', json)
-        //navigation.navigate('/')
-      }
-    })
+    mutation.mutate(values, {
+      onSuccess: (json) => {
+        if (typeof json === "object") {
+          showToast(
+            `Bienvenidx ${json.userDetails.nickname}`,
+            theme.colors.success
+          );
+          setTimeout(() => {
+            navigation.navigate("/"); // PENDING!!!!
+          }, 1500);
+        } else {
+          showToast(`Email o contraseña erróneos`, theme.colors.error);
+        }
+      },
+      onError: (error) => {
+        showToast(`Email o contraseña erróneos`, theme.colors.error);
+      },
+      onSettled: () => {
+        setShowActivityIndicator(false);
+      },
+    });
   };
 
-  //if (isLoading) return <Text>Loading...</Text>;
-  //if (isError) return <Text>Something went wrong: {isError.message}</Text>;
-
-  /*
-  const tryLogin = async (email, password) => {
-    try {
-      const res = await userLogin(values.email, values.password)
-      if(res) console.log(res)
-      else console.error(error)
-    } catch (error) {
-      console.log(error)
-    } 
-    
- 
-
-
-    try {
-      const res = await loginWeb(email, password)
-      if(res) console.log('ok')
-    } catch (error) {
-      console.log(error)
-    }
-
-  } */
-
-  /* const { isLoading, isError, data, error } = useQuery("login", tryLogin) */
-
-  // const {login} = useContext(AuthContext)
+  const showToast = (message, backgroundColor) => {
+    toast = Toast.show(message, {
+      position: Toast.positions.CENTER,
+      animation: true,
+      hideOnPress: true,
+      delay: 0,
+      duration: Toast.durations.SHORT,
+      textColor: theme.colors.textPrimary,
+      backgroundColor: backgroundColor,
+    });
+  };
 
   return (
     <Formik
       validationSchema={loginValidationSchema}
-      validateOnChange={false} //=> esto hace que sólo valide al clicar sobre botón, NO valida mientras onChange!*/
+      validateOnChange={false}
       initialValues={initialValues}
-      onSubmit={handleSubmit} // => values format {"email": "diana@email.com", "password": "unaMayus1."}
+      onSubmit={handleSubmit} // => values JSON format
     >
       {({ handleSubmit }) => {
         return (
           <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Login</Text>
+
+            {showActivityIndicator && (
+              <ActivityIndicator
+                size={"large"}
+                color={theme.colors.salmonBackground}
+              />
+            )}
 
             <InputStyled
               name="email"
