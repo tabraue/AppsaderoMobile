@@ -20,17 +20,43 @@ export const loginWeb = async (info) => {
   }
 };
 
-export const userSignup = async (first_name, nickname, email, password) => {
+/* export const userLogin = async () => {
   try {
-    await api.post("/auth/signup", {
-      first_name: first_name,
-      nickname: nickname,
-      email: email,
-      password: password,
+    const { data } = await EncryptedStorage.setItem(
+        "user_session",
+        JSON.stringify({
+          token: data.userDetails.token,
+          first_name: data.userDetails.first_name,
+          nickname: data.userDetails.nickname,
+        })
+      );
+  
+      console.log("brava", data);
+
+    
+
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+}; */
+
+export const userSignup = async (variables) => {
+  console.log('principio del servicio', variables)
+  try {
+    console.log('dentro del try')
+    const {data} = await api.post("/auth/signup", {
+      first_name: variables.first_name,
+      nickname: variables.nickname,
+      email: variables.email,
+      password: variables.password,
     });
-    return true;
+    console.log('Crema!!')
+    return data;
     //localStorage.setItem('token', data.token)
   } catch (err) {
-    return err;
+    console.error(err)
+    return false;
+    
   }
 };

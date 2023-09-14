@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import Main from "../screens/Home/Main";
 import theme from "../../theme/theme";
 import LoginScreen from "../screens/LoginScreen/LoginScreen";
-import Signup from "../screens/SignupScreen/SignupScreen";
+import SignupScreen from "../screens/SignupScreen/SignupScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // ESTA SERÍA LA NAVEGACIÓN PREVIA A TENER EL TOKEN,
@@ -37,7 +37,7 @@ const FirstNavigation = () => {
         />
         <Stack.Screen
           name="Signup"
-          component={Signup}
+          component={SignupScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -27,7 +27,7 @@ export const signupValidationSchema = yup.object().shape({
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
       "least 8 char: 1 minus, 1 mayus and 1 number"
     ),
-  name: yup
+  first_name: yup
     .string()
     .min(2, "Muy corto. Mínimo 2 carácteres")
     .required("Nombre requerido"),
