@@ -51,7 +51,7 @@ const SignupScreen = ({ navigation }) => {
     console.log("Aquí **53**", values);
     mutation.mutate(values, {
       onSuccess: function (json) {
-        console.log("json en handlesubmit", json);
+        console.log("jandlesubmit", json.message);
       },
     });
   };
