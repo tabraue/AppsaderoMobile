@@ -20,15 +20,16 @@ export const loginWeb = async (info) => {
   }
 };
 
-export const userSignup = async (first_name, nickname, email, password) => {
+export const userSignup = async (values) => {
   try {
-    await api.post("/auth/signup", {
-      first_name: first_name,
-      nickname: nickname,
-      email: email,
-      password: password,
+    console.log('hey')
+    const response = await api.post("/auth/signup", {
+      first_name: values.first_name,
+      nickname: values.nickname,
+      email: values.email,
+      password: values.password,
     });
-    return true;
+    return response;
     //localStorage.setItem('token', data.token)
   } catch (err) {
     return err;
