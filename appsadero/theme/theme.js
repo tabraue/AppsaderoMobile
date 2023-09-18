@@ -38,6 +38,8 @@ const theme = {
     // this margin top adjusts to any status bar depending on the device.
     // extra padding or margin should be added
   },
-};
+
+
+  };
 
 export default theme;
