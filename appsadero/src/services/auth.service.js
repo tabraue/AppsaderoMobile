@@ -22,16 +22,15 @@ export const loginWeb = async (info) => {
 
 export const userSignup = async (values) => {
   try {
-    console.log('hey')
-    const response = await api.post("/auth/signup", {
+    const {data} = await api.post("/auth/signup", {
       first_name: values.first_name,
       nickname: values.nickname,
       email: values.email,
       password: values.password,
     });
-    return response; 
+    return data; 
     
-    //localStorage.setItem('token', data.token)
+    
   } catch (err) {
 
     throw new Error(err.response.data.message);

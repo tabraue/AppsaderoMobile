@@ -5,8 +5,8 @@ import theme from "../../../theme/theme";
 const ShowToast = ({ message, backgroundColor, state }) => {
   const [visible, setVisible] = useState(state);
 
-  useEffect(() => {
-    if (message) {
+  
+   
       const toast = Toast.show(message, {
         position: Toast.positions.CENTER,
         animation: true,
@@ -17,12 +17,11 @@ const ShowToast = ({ message, backgroundColor, state }) => {
         backgroundColor: backgroundColor,
       });
 
-    }
-  }, [state ]);
 
-  console.log(visible)
 
-  return visible ? <></> : null; // Renderizar un componente nulo cuando el Toast está visible
+
+
+  return visible ? <></> : null; 
 };
 
 export default ShowToast;

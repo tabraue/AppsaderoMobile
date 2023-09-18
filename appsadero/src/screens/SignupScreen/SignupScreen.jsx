@@ -49,41 +49,50 @@ const SignupScreen = ({ navigation }) => {
         if (typeof json === "object") {
           setShowToast({
             status: true,
-            message: `Yes! You're registered ${res.nickname}`,
+            message: `Yes! You're registered ${json.nickname}`,
             background: theme.colors.success,
           });
-          
-          setTimeout(() => {
+          console.log("IF");
+            console.log(showToast);
+
+
+
+          /*  setTimeout(() => {
             navigation.navigate("Login");
-          }, 1500);
+          }, 1500); */
         } else {
           setShowToast({
             status: true,
-            message: res.response.data.message,
+            message: json.message,
             background: theme.colors.error,
           });
-          
+          console.log('Else')
+            console.log(showToast);
+
         }
       },
-      onError: (error) => {
-         setShowToast({
-           status: true,
-           message: res.response.data.message,
-           background: theme.colors.error,
-         });
-        setToastMessage(res.response.data.message);
-        setToastBackgroundColor(theme.colors.error);
+      onError: () => {
+        setShowToast({
+          status: true,
+          message: json.data.message,
+          background: theme.colors.error,
+        });
+        console.log("Error");
+          console.log(showToast);
+
+
       },
-      onSettled: () => {
+      /* onSettled: () => {
         setShowActivityIndicator(false);
         setShowToast({
           status: false,
           message: "",
           background: "",
         });
-      },
+      }, */
     });
   };
+
 
   return (
     <Formik
