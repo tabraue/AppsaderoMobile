@@ -5,6 +5,8 @@ import {
   View,
   TouchableHighlight,
   ActivityIndicator,
+  KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
@@ -88,37 +90,35 @@ const LoginScreen = ({ navigation }) => {
                 color={theme.colors.salmonBackground}
               />
             )}
+            <KeyboardAvoidingView   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+              <InputStyled
+                name="email"
+                placeholder="Escribe tu email"
+                autoComplete="email"
+                autoCapitalize="none"
+              />
 
-            <InputStyled
-              name="email"
-              placeholder="Escribe tu email"
-              autoComplete="email"
-              autoCapitalize="none"
-            />
+              <PasswordInput
+                name="password"
+                placeholder="Escribe tu contraseña"
+              />
+            </KeyboardAvoidingView>
 
-            <PasswordInput
-              name="password"
-              placeholder="Escribe tu contraseña"
-            />
-
-            <View style={styles.redirect}>
-              <Text>
-                Aún no tengo una cuenta{" "}
-                <TouchableHighlight
-                  onPress={() => navigation.navigate("Signup")}
-                >
-                  <Text style={styles.textButton}>Click aquí!</Text>
-                </TouchableHighlight>
-              </Text>
-            </View>
-
+            <View style={styles.btnContainer}>
+            <TouchableHighlight
+              onPress={() => navigation.navigate("Signup")} //  PENDING !!
+              underlayColor={theme.colors.salmonBackground}
+              style={styles.link}
+            >
+              <Text style={styles.textLink}>Aún no tengo una cuenta.</Text>
+            </TouchableHighlight>
             <ButtonStyled
               title="Login"
-              color={theme.colors.darkBlue}
-              accessText="Botón para logearse en Appsadero"
+              accessText="Botón de login a Appsadero"
               onPress={handleSubmit}
+              style={styles.btnlogin}
             />
-
+            </View>
             <AppBar navigation={navigation} />
           </SafeAreaView>
         );
@@ -134,23 +134,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
   },
-  redirect: {
-    justifyContent: "center",
-    gap: 4,
-  },
   title: {
     fontSize: theme.fontSizes.heading,
     fontWeight: theme.fontWeights.bold,
     marginBottom: 10,
   },
-  text: {
-    fontSize: theme.fontSizes.body,
-    textAlign: "left",
-  },
-  textButton: {
-    alignItems: "center",
+  textLink: {
     color: theme.colors.darkBlue,
     textDecorationLine: "underline",
+    alignSelf: "flex-start",
+  },
+  link: {
+    padding: theme.border.padding,
+    borderRadius: theme.border.borderRadius,
+    marginTop: 20
+  },
+  btnContainer:{
+    alignSelf: "flex-end",
+  },
+  btnlogin: {
+    backgroundColor: theme.colors.darkBlue,
   },
 });
 
