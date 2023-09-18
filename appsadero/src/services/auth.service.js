@@ -29,10 +29,26 @@ export const userSignup = async (values) => {
       email: values.email,
       password: values.password,
     });
-    return response;
+    return response; 
+    
     //localStorage.setItem('token', data.token)
   } catch (err) {
-    return err;
+
+    throw new Error(err.response.data.message);
   }
 };
+
+    
+/*      if (response.status === 200) {
+      return response.data; 
+    } else {
+      throw new Error(response.message);
+    }
+    //localStorage.setItem('token', data.token)
+  } catch (err) {
+
+    throw new Error(err.response.data.message);
+  }
+}; */
+
 

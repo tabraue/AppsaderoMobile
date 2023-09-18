@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Alert,
   SafeAreaView,
@@ -6,6 +6,7 @@ import {
   Text,
   TouchableHighlight,
   View,
+  ActivityIndicator,
 } from "react-native";
 import { Formik } from "formik";
 import { useMutation } from "react-query";
@@ -17,6 +18,7 @@ import InputStyled from "../../components/InputStyled/InputStyled";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import ButtonStyled from "../../components/ButtonStyled/ButtonStyled";
 import { userSignup } from "../../services/auth.service";
+import ShowToast from "../../components/Toast/Toast";
 
 const initialValues = {
   email: "",
@@ -26,36 +28,62 @@ const initialValues = {
 };
 
 const SignupScreen = ({ navigation }) => {
+  const [showActivityIndicator, setShowActivityIndicator] = useState(false);
+  const [showToast, setShowToast] = useState({
+    status: false,
+    message: '',
+    background: ''
+  });
+ 
+  
 
   const mutation = useMutation(async function (values) {
-      const res = await userSignup(values)
-      if (res) return res;
-    },
-    {
-      onMutate: function () {
-        console.log("Lanzamos petición de registro");
-      },
-      onSuccess: function (json) {
-        console.log("Bro or Sis, user registered", json);
-      },
-      onError: function (error) {
-        console.log(error);
-      },
-      onSettled: function () {
-        console.log("on settled");
-      },
-    }
-  );
+    setShowActivityIndicator(true);
+    const res = await userSignup(values);
+    if (res) return res;
+  });
 
   const handleSubmit = (values) => {
-    console.log("Aquí **53**", values);
     mutation.mutate(values, {
-      onSuccess: function (json) {
-        console.log("jandlesubmit", json.message);
+      onSuccess: (json) => {
+        if (typeof json === "object") {
+          setShowToast({
+            status: true,
+            message: `Yes! You're registered ${res.nickname}`,
+            background: theme.colors.success,
+          });
+          
+          setTimeout(() => {
+            navigation.navigate("Login");
+          }, 1500);
+        } else {
+          setShowToast({
+            status: true,
+            message: res.response.data.message,
+            background: theme.colors.error,
+          });
+          
+        }
+      },
+      onError: (error) => {
+         setShowToast({
+           status: true,
+           message: res.response.data.message,
+           background: theme.colors.error,
+         });
+        setToastMessage(res.response.data.message);
+        setToastBackgroundColor(theme.colors.error);
+      },
+      onSettled: () => {
+        setShowActivityIndicator(false);
+        setShowToast({
+          status: false,
+          message: "",
+          background: "",
+        });
       },
     });
   };
-  
 
   return (
     <Formik
@@ -68,6 +96,20 @@ const SignupScreen = ({ navigation }) => {
         return (
           <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Signup</Text>
+
+            {showActivityIndicator && (
+              <ActivityIndicator
+                size={"large"}
+                color={theme.colors.salmonBackground}
+              />
+            )}
+            {showToast && (
+              <ShowToast
+                state={showToast.status}
+                message={showToast.message}
+                backgroundColor={showToast.background}
+              />
+            )}
 
             <InputStyled
               name="email"
@@ -97,7 +139,6 @@ const SignupScreen = ({ navigation }) => {
               color={theme.colors.darkBlue}
               accessText="Botón para registrarse en Appsadero"
               onPress={handleSubmit}
-            
             />
             <AppBar navigation={navigation} />
           </SafeAreaView>
