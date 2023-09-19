@@ -21,6 +21,7 @@ import ButtonStyled from "../../components/ButtonStyled/ButtonStyled";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import AppBar from "../../components/AppBar/AppBar";
 import ShowToast from "../../components/Toast/Toast";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const initialValues = {
   email: "",
@@ -35,7 +36,7 @@ const LoginScreen = ({ navigation }) => {
     background: "",
   });
   const [visibleToast, setVisibleToast] = useState(false);
-
+  
   const mutation = useMutation(async function (values) {
     setShowActivityIndicator(true);
     const res = await loginWeb(values);
@@ -117,10 +118,11 @@ const LoginScreen = ({ navigation }) => {
 
                   <InputStyled
                     name="email"
+                    icon="Mail"
+                    inputMode="email"
                     placeholder="Escribe tu email"
                     autoComplete="email"
                     autoCapitalize="none"
-                    icon="Mail"
                   />
 
                   <PasswordInput

@@ -114,6 +114,7 @@ const SignupScreen = ({ navigation }) => {
                   <InputStyled
                     name="email"
                     icon="Mail"
+                    inputMode="email"
                     placeholder="Escribe tu email"
                     autoComplete="email"
                     autoCapitalize="none"
