@@ -43,8 +43,8 @@ const PasswordInput = ({ name, ...props }) => {
 const styles = StyleSheet.create({
   pass: {
     textAlign: theme.aligns.center,
-    borderWidth: theme.border.width,
-    borderColor: theme.colors.salmonBackground,
+    borderBottomWidth: theme.border.width,
+    borderBottomColor: theme.colors.salmonBackground,
     borderRadius: theme.border.borderRadius,
     padding: theme.border.padding,
     width: 300,

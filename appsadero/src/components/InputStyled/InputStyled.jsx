@@ -1,14 +1,16 @@
-import { TextInput, StyleSheet, Text } from "react-native"; // Cambiado de 'react-native-web' a 'react-native'
+import { TextInput, StyleSheet, Text, View } from "react-native"; // Cambiado de 'react-native-web' a 'react-native'
 import React from "react";
 import theme from "../../../theme/theme";
 import { useField } from "formik";
+import { Mail, OpenEyeIcon } from "../../icons/Icons";
 
 // INPUT TEXT USING HOOK USEFIELD by FORMIK
 const InputStyled = ({ name, ...props }) => {
   const [field, meta, helpers] = useField(name);
 
   return (
-    <>
+    <View style={styles.inputContainer}>
+
       <TextInput
         value={field.value}
         onChangeText={(value) => helpers.setValue(value)}
@@ -16,18 +18,32 @@ const InputStyled = ({ name, ...props }) => {
         textAlign="center"
         style={meta.error ? styles.error : styles.input}
         {...props}
-      />
+        />
+      <View style={styles.iconContainer}>
+        {props.icon && <Mail style={styles.icon} color={theme.colors.textPrimary}/>}
+      </View>
       {meta.error && <Text style={styles.errorText}>{meta.error}</Text>}
-    </>
+    </View>
   );
 };
 
 
 const styles = StyleSheet.create({
+  inputContainer: {
+    position: "relative",
+  },
+  iconContainer: {
+    position: "absolute",
+    top: 7, // Ajusta esta posición según sea necesario
+    right: 15, // Ajusta esta posición según sea necesario
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   input: {
     textAlign: theme.aligns.center,
-    borderWidth: theme.border.width,
-    borderColor: theme.colors.salmonBackground,
+    borderBottomWidth: theme.border.width,
+    borderBottomColor: theme.colors.salmonBackground,
     borderRadius: theme.border.borderRadius,
     padding: theme.border.padding,
     width: 300,
@@ -50,6 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: theme.aligns.center,
   },
+  
 });
 
 export default InputStyled;
