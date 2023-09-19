@@ -84,13 +84,15 @@ const LoginScreen = ({ navigation }) => {
           <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Login</Text>
 
-            {showActivityIndicator && (
-              <ActivityIndicator
-                size={"large"}
-                color={theme.colors.salmonBackground}
-              />
-            )}
-            <KeyboardAvoidingView   behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === "android" ? "padding" : "height"}
+            >
+              {showActivityIndicator && (
+                <ActivityIndicator
+                  size={"large"}
+                  color={theme.colors.salmonBackground}
+                />
+              )}
               <InputStyled
                 name="email"
                 placeholder="Escribe tu email"
@@ -102,23 +104,24 @@ const LoginScreen = ({ navigation }) => {
                 name="password"
                 placeholder="Escribe tu contraseña"
               />
+
+              <View>
+                <TouchableHighlight
+                  onPress={() => navigation.navigate("Signup")} //  PENDING !!
+                  underlayColor={theme.colors.salmonBackground}
+                  style={styles.link}
+                >
+                  <Text style={styles.textLink}>Aún no tengo una cuenta.</Text>
+                </TouchableHighlight>
+                <ButtonStyled
+                  title="Login"
+                  accessText="Botón de login a Appsadero"
+                  onPress={handleSubmit}
+                  style={styles.btnlogin}
+                />
+              </View>
             </KeyboardAvoidingView>
 
-            <View style={styles.btnContainer}>
-            <TouchableHighlight
-              onPress={() => navigation.navigate("Signup")} //  PENDING !!
-              underlayColor={theme.colors.salmonBackground}
-              style={styles.link}
-            >
-              <Text style={styles.textLink}>Aún no tengo una cuenta.</Text>
-            </TouchableHighlight>
-            <ButtonStyled
-              title="Login"
-              accessText="Botón de login a Appsadero"
-              onPress={handleSubmit}
-              style={styles.btnlogin}
-            />
-            </View>
             <AppBar navigation={navigation} />
           </SafeAreaView>
         );
@@ -147,13 +150,13 @@ const styles = StyleSheet.create({
   link: {
     padding: theme.border.padding,
     borderRadius: theme.border.borderRadius,
-    marginTop: 20
-  },
-  btnContainer:{
-    alignSelf: "flex-end",
+    marginTop: 20,
+    marginBottom: 30,
+    alignSelf: "flex-start",
   },
   btnlogin: {
     backgroundColor: theme.colors.darkBlue,
+    alignSelf: "flex-end",
   },
 });
 
