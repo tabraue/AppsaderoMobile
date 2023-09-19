@@ -5,7 +5,7 @@ import theme from '../../../theme/theme';
 
 const StatusBarCustomized = () => {
   return (
-    <View>
+    <View >
       <StatusBar
         backgroundColor={theme.colors.salmonBackground}
         barStyle="dark-content"

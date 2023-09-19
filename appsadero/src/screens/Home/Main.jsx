@@ -4,6 +4,7 @@ import AppBar from "../../components/AppBar/AppBar";
 import theme from "../../../theme/theme";
 
 
+
 const Main = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
