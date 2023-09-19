@@ -6,12 +6,10 @@ import {
   TouchableHighlight,
   ActivityIndicator,
   KeyboardAvoidingView,
-  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { Formik } from "formik";
-import Toast from "react-native-root-toast";
 
 import { loginValidationSchema } from "../../validationSchemas/login";
 import { loginWeb } from "../../services/auth.service";
@@ -21,6 +19,8 @@ import InputStyled from "../../components/InputStyled/InputStyled";
 import ButtonStyled from "../../components/ButtonStyled/ButtonStyled";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import AppBar from "../../components/AppBar/AppBar";
+import ShowToast from "../../components/Toast/Toast";
+
 
 const initialValues = {
   email: "",
@@ -29,6 +29,12 @@ const initialValues = {
 
 const LoginScreen = ({ navigation }) => {
   const [showActivityIndicator, setShowActivityIndicator] = useState(false);
+  const [showToast, setShowToast] = useState({
+    status: false,
+    message: '',
+    background: ''
+  });
+  const [visibleToast, setVisibleToast] = useState(false)
 
   const mutation = useMutation(async function (values) {
     setShowActivityIndicator(true);
@@ -40,37 +46,40 @@ const LoginScreen = ({ navigation }) => {
     mutation.mutate(values, {
       onSuccess: (json) => {
         if (typeof json === "object") {
-          showToast(
-            `Bienvenidx ${json.userDetails.nickname}`,
-            theme.colors.success
-          );
+          setShowToast({
+            status: true,
+            message: `Bienvenidx ${json.userDetails.nickname}`,
+            background: theme.colors.success,
+          });
+          setVisibleToast(true)
           setTimeout(() => {
             navigation.navigate("/"); // PENDING!!!!
           }, 1500);
         } else {
-          showToast(`Email o contraseña erróneos`, theme.colors.error);
+          setShowToast({
+            status: true,
+            message: `Email o contraseña erróneos`,
+            background: theme.colors.error,
+          });
+          setVisibleToast(true)
         }
       },
       onError: (error) => {
-        showToast(`Email o contraseña erróneos`, theme.colors.error);
+        setShowToast({
+          status: true,
+          message:`Email o contraseña erróneos`,
+          background: theme.colors.error,
+        });
+        setVisibleToast(true)
       },
       onSettled: () => {
         setShowActivityIndicator(false);
+        setVisibleToast(false)
       },
     });
   };
 
-  const showToast = (message, backgroundColor) => {
-    toast = Toast.show(message, {
-      position: Toast.positions.CENTER,
-      animation: true,
-      hideOnPress: true,
-      delay: 0,
-      duration: Toast.durations.SHORT,
-      textColor: theme.colors.textPrimary,
-      backgroundColor: backgroundColor,
-    });
-  };
+
 
   return (
     <Formik
@@ -93,11 +102,21 @@ const LoginScreen = ({ navigation }) => {
                   color={theme.colors.salmonBackground}
                 />
               )}
+
+              {visibleToast && (
+                <ShowToast
+                  state={showToast.status}
+                  message={showToast.message}
+                  backgroundColor={showToast.background}
+                />
+              )}
+
               <InputStyled
                 name="email"
                 placeholder="Escribe tu email"
                 autoComplete="email"
                 autoCapitalize="none"
+                icon="Mail"
               />
 
               <PasswordInput

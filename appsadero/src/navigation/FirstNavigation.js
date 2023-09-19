@@ -13,16 +13,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 
 const FirstNavigation = () => {
-  const [token, setToken] = useState(true);
-
   return (
     <View style={{ flex: 1 }}>
-      {token ? (
-        <Header title="APPSADERO" token="true" />
-      ) : (
-        <Header title="APPSADERO" />
-      )}
-
+      <Header title="APPSADERO" />
       <Stack.Navigator initialRouteName="/">
         <Stack.Screen
           name="/"
