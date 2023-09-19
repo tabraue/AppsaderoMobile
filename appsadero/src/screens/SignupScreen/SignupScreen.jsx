@@ -34,6 +34,7 @@ const SignupScreen = ({ navigation }) => {
     message: '',
     background: ''
   });
+  const [visibleToast, setVisibleToast] = useState(false)
  
   
 
@@ -52,7 +53,7 @@ const SignupScreen = ({ navigation }) => {
             message: `Yes! You're registered ${json.nickname}`,
             background: theme.colors.success,
           });
-          console.log("IF");
+          setVisibleToast(true)
             console.log(showToast);
 
 
@@ -66,7 +67,7 @@ const SignupScreen = ({ navigation }) => {
             message: json.message,
             background: theme.colors.error,
           });
-          console.log('Else')
+          setVisibleToast(true)
             console.log(showToast);
 
         }
@@ -78,18 +79,20 @@ const SignupScreen = ({ navigation }) => {
           background: theme.colors.error,
         });
         console.log("Error");
+        setVisibleToast(true)
           console.log(showToast);
 
 
       },
-      /* onSettled: () => {
+       onSettled: () => {
         setShowActivityIndicator(false);
         setShowToast({
           status: false,
           message: "",
           background: "",
         });
-      }, */
+        setVisibleToast(false)
+      }, 
     });
   };
 
@@ -112,7 +115,7 @@ const SignupScreen = ({ navigation }) => {
                 color={theme.colors.salmonBackground}
               />
             )}
-            {showToast && (
+            {visibleToast && (
               <ShowToast
                 state={showToast.status}
                 message={showToast.message}
