@@ -8,7 +8,6 @@ const Header = ({ ...props }) => {
 
     <SafeAreaView style={styles.header}>
       <Text style={styles.txt}>{props.title}</Text>
-      
       <LogoutIcon/>
     </SafeAreaView>
   );

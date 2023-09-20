@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
     letterSpacing: 0.25,
     marginTop: 5,
+    textAlign: "center"
   },
 });
 
