@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useMutation } from "react-query";
 import { Formik } from "formik";
 
@@ -22,6 +22,7 @@ import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import AppBar from "../../components/AppBar/AppBar";
 import ShowToast from "../../components/Toast/Toast";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "../../context/AuthContext";
 
 const initialValues = {
   email: "",
@@ -29,6 +30,7 @@ const initialValues = {
 };
 
 const LoginScreen = ({ navigation }) => {
+  const {login} = useContext(AuthContext)
   const [showActivityIndicator, setShowActivityIndicator] = useState(false);
   const [showToast, setShowToast] = useState({
     status: false,
@@ -53,6 +55,7 @@ const LoginScreen = ({ navigation }) => {
             background: theme.colors.success,
           });
           setVisibleToast(true);
+          login()
           setTimeout(() => {
             navigation.navigate("/"); // PENDING!!!!
           }, 1500);
@@ -105,7 +108,7 @@ const LoginScreen = ({ navigation }) => {
                     <ActivityIndicator
                       size={"large"}
                       color={theme.colors.salmonBackground}
-                    />
+                    /> 
                   )}
 
                   {visibleToast && (
@@ -136,7 +139,7 @@ const LoginScreen = ({ navigation }) => {
                       underlayColor={theme.colors.salmonBackground}
                       style={styles.link}
                     >
-                    <Text>¿No tienes cuenta?{'   '}<Text style={styles.textLink}>Regístrate ahora</Text></Text>
+                    <Text>¿No tienes cuenta?{'   '}<Text style={styles.textLink}>Regístrate ahora </Text></Text>
 
                     </TouchableHighlight>
                     <ButtonStyled

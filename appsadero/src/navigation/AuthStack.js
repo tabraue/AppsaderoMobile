@@ -20,15 +20,18 @@ const FirstNavigation = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Header title="APPSADERO" />
-      <Stack.Navigator initialRouteName="/">
-        <Stack.Screen
-          name="/"
-          component={Main}
-          options={{ headerShown: false }}
-          style={theme.margins.top}
-        />
+      <Stack.Navigator initialRouteName="Login">
        
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={SignupScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </View>
   );

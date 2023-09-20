@@ -1,6 +1,7 @@
 import { Text, StyleSheet, SafeAreaView, View } from "react-native";
 import React from "react";
 import theme from "../../../theme/theme";
+import LogoutIcon from "./LogoutIcon/LogoutIcon";
 
 const Header = ({...props}) => {
   return (
@@ -8,11 +9,14 @@ const Header = ({...props}) => {
     <SafeAreaView style={styles.headerRow}>
           <Text style={styles.txt}>{props.title}</Text>
           <Text style={styles.nickname}>Diana</Text>
+          
     </SafeAreaView>
 
     ) : (
-    <SafeAreaView style={styles.header}>
+    <SafeAreaView style={styles.headerRow}>
       <Text style={styles.txt}>{props.title}</Text>
+      
+      <LogoutIcon/>
     </SafeAreaView>
     )
   );
