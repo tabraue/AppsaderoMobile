@@ -1,53 +1,35 @@
 import React from "react";
-import { View, StyleSheet, Pressable, Button, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../../theme/theme";
 import { useRoute } from "@react-navigation/native";
-import { HomeIcon } from "../../icons/Icons";
-
-/* const AppBarTab = ({ active, children, to}) => {
-
-    const textStyles = [
-        styles.text,
-        active && styles.active
-    ]
-    return (
-        <Link to={to} >
-            <TextStyled style={textStyles}>{children}</TextStyled>
-        </Link>
-
-    )
-}
- */
+import { BbqIcon, HomeIcon, MoneyIcon } from "../../icons/Icons";
 
 const AppBar = ({ navigation }) => {
   const route = useRoute();
 
   const AppBarStyles = [styles.appBar];
 
-  // active && styles.active
 
   return (
     <View style={AppBarStyles}>
-      <Text
-        onPress={() => navigation.navigate("Login")}
-        style={route.name === "Login" ? styles.activeText : null}
-      >
-        Login
-      </Text>
-      
       <TouchableOpacity
         onPress={() => navigation.navigate("/")}
-/*         style={route.name === "/" ? styles.activeText : null} */
       >
         <HomeIcon color={route.name === "/" ? "#ffff" : null}/>
       </TouchableOpacity>
 
-      <Text
-        onPress={() => navigation.navigate("Signup")}
-        style={route.name === "Signup" ? styles.activeText : null}
+      <TouchableOpacity
+        onPress={() => navigation.navigate("/")}
       >
-        Signup
-      </Text>
+        <BbqIcon color={route.name === "/" ? "#ffff" : null} />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("/")}
+      >
+        <MoneyIcon color={route.name === "/" ? "#ffff" : null} />
+      </TouchableOpacity>
+
     </View>
   );
 };

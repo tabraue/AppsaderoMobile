@@ -47,15 +47,3 @@ const styles = StyleSheet.create({
 });
 
 export default ButtonStyled;
-
-/*     <View>
-      <Button
-      style={styles.button}
-      title={title}
-      color={color}
-      AQUI
-    accessibilityLabel={accessText}
-      {...props}
-    /> 
-    </View>
-/* onPress={() => Alert.alert('Button already')} */

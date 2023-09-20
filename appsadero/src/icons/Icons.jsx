@@ -26,8 +26,7 @@ export const Mail = ({ color }) => {
         d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"
       />
     </Svg>
-  )
-    
+  );
 };
 
 export const HomeIcon = ({ color }) => {
@@ -42,8 +41,8 @@ export const BbqIcon = ({ color, ...props }) => {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      width={48}
-      height={48}
+      width={34}
+      height={34}
       viewBox="0 -960 960 960"
       {...props}
     >
@@ -56,7 +55,7 @@ export const BbqIcon = ({ color, ...props }) => {
 };
 
 export const FriendsIcon = ({ color }) => {
-  return <Icon name={"users"} size={30} color={color} />;
+  return <Icon name={"users"} size={23} color={color} />;
 };
 
 /* export const ArrowRightIcon = ({ color, ...props }) => {
@@ -147,6 +146,23 @@ export const TickIcon = ({ color, ...props }) => {
       <Path
         fill={color}
         d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
+      />
+    </Svg>
+  );
+};
+
+export const KebabIcon = ({ color, ...props }) => {
+  return (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 -960 960 960"
+      {...props}
+    >
+      <Path
+        fill={color}
+        d="M250-40v-160h-30q-42 0-71-29t-29-71q0-42 29-71t71-29h30v-40H120v-200h130v-40h-30q-42 0-71-29t-29-71q0-42 29-71t71-29h30v-40h60v40h30q42 0 71 29t29 71q0 42-29 71t-71 29h-30v40h130v200H310v40h30q42 0 71 29t29 71q0 42-29 71t-71 29h-30v160h-60Zm400 0v-160h-30q-42 0-71-29t-29-71q0-42 29-71t71-29h30v-40H520v-200h130v-40h-30q-42 0-71-29t-29-71q0-42 29-71t71-29h30v-40h60v40h30q42 0 71 29t29 71q0 42-29 71t-71 29h-30v40h130v200H710v40h30q42 0 71 29t29 71q0 42-29 71t-71 29h-30v160h-60ZM220-760h120q8 0 14-6t6-14q0-8-6-14t-14-6H220q-8 0-14 6t-6 14q0 8 6 14t14 6Zm400 0h120q8 0 14-6t6-14q0-8-6-14t-14-6H620q-8 0-14 6t-6 14q0 8 6 14t14 6ZM200-520h160v-40H200v40Zm400 0h160v-40H600v40ZM220-280h120q8 0 14-6t6-14q0-8-6-14t-14-6H220q-8 0-14 6t-6 14q0 8 6 14t14 6Zm400 0h120q8 0 14-6t6-14q0-8-6-14t-14-6H620q-8 0-14 6t-6 14q0 8 6 14t14 6ZM200-760v-40 40Zm400 0v-40 40ZM200-520v-40 40Zm400 0v-40 40ZM200-280v-40 40Zm400 0v-40 40Z"
       />
     </Svg>
   );
