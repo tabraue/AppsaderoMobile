@@ -17,7 +17,7 @@ const Header = ({ ...props }) => {
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-around",
     backgroundColor: theme.colors.salmonBackground,
     paddingTop: theme.margins.top,
     left: 0,

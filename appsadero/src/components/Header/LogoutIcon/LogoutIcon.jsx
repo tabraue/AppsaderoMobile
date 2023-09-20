@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { TouchableHighlight, View } from "react-native";
-import Svg, { SvgProps, Path } from "react-native-svg"
+import Svg, { Path } from "react-native-svg"
 import { AuthContext } from "../../../context/AuthContext";
 
 const LogoutIcon = (props) => {

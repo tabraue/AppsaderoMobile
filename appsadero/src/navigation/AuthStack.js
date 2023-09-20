@@ -1,7 +1,6 @@
 import { View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
-import Main from "../screens/Home/Main";
 import theme from "../../theme/theme";
 import LoginScreen from "../screens/LoginScreen/LoginScreen";
 import SignupScreen from "../screens/SignupScreen/SignupScreen";
@@ -14,7 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
-const FirstNavigation = ({ navigation }) => {
+const AuthStack = ({ navigation }) => {
 
 
 
@@ -37,4 +36,4 @@ const FirstNavigation = ({ navigation }) => {
   );
 };
 
-export default FirstNavigation;
+export default AuthStack;
