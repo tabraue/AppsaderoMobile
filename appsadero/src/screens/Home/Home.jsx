@@ -14,48 +14,48 @@ import { BbqIcon, FriendsIcon, KebabIcon } from "../../icons/Icons";
 const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{gap: 50}}>
-      <ButtonStyled
-        title={
-          <View style={styles.views}>
-            <Text>
-              <BbqIcon />
-            </Text>
-            <Text style={styles.txtbtn}> Próximos asaderos</Text>
-          </View>
-        }
-        accessText={"Botón ir a próximos asaderos"}
-        style={styles.btns}
-        onPress={() => Alert.alert('Clicaste en "Próximos asaderos"')}
-      />
+      <View style={{ gap: 50 }}>
+        <ButtonStyled
+          title={
+            <View style={styles.views}>
+              <Text>
+                <BbqIcon />
+              </Text>
+              <Text style={styles.txtbtn}> Próximos asaderos</Text>
+            </View>
+          }
+          accessText={"Botón ir a próximos asaderos"}
+          style={styles.btns}
+          onPress={() => navigation.navigate("NextBbq")}
+        />
 
-      <ButtonStyled
-        title={
-          <View style={styles.views}>
-            <Text>
-              <FriendsIcon />
-            </Text>
-            <Text style={styles.txtbtn}>Amistades</Text>
-          </View>
-        }
-        accessText={"Botón ir a amistades"}
-        style={styles.btns}
-        onPress={() => Alert.alert('Clicaste en "Amistades"')}
-      />
+        <ButtonStyled
+          title={
+            <View style={styles.views}>
+              <Text>
+                <FriendsIcon />
+              </Text>
+              <Text style={styles.txtbtn}>Amistades</Text>
+            </View>
+          }
+          accessText={"Botón ir a amistades"}
+          style={styles.btns}
+          onPress={() => navigation.navigate("Friends")}
+        />
 
-      <ButtonStyled
-        title={
-          <View style={styles.views}>
-            <Text>
-              <KebabIcon />
-            </Text>
-            <Text style={styles.txtbtn}>Anteriores asaderos</Text>
-          </View>
-        }
-        accessText={"Botón ir a anteriores asaderos"}
-        style={styles.btns}
-        onPress={() => Alert.alert('Clicaste en "Anteriores asaderos"')}
-      />
+        <ButtonStyled
+          title={
+            <View style={styles.views}>
+              <Text>
+                <KebabIcon />
+              </Text>
+              <Text style={styles.txtbtn}>Anteriores asaderos</Text>
+            </View>
+          }
+          accessText={"Botón ir a anteriores asaderos"}
+          style={styles.btns}
+          onPress={() => navigation.navigate('LastBbq')}
+        />
       </View>
       <AppBar navigation={navigation} />
     </SafeAreaView>

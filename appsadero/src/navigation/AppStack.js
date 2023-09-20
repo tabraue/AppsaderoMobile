@@ -3,9 +3,14 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import theme from "../../theme/theme";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import StatusBarCustomized from "../components/StatusBarCustomized/StatusBar";
 import Home from "../screens/Home/Home";
+import CreateBbq from "../screens/CreateBbq/CreateBbq";
+import Friends from "../screens/Friends/Friends";
+import NextBbq from "../screens/NextBbq/NextBbq";
+import PayScreen from "../screens/PayScreen/PayScreen";
+import AppBar from "../components/AppBar/AppBar";
+import LastBbq from "../screens/LastBbq/LastBbq";
 
 
 // ESTA SERÍA LA NAVEGACIÓN PREVIA A TENER EL TOKEN,
@@ -27,8 +32,38 @@ const AppStack = ({ navigation }) => {
           options={{ headerShown: false }}
           style={theme.margins.top}
         />
+        <Stack.Screen
+          name="CreateBbq"
+          component={CreateBbq}
+          options={{ headerShown: false }}
+          style={theme.margins.top}
+        />
+        <Stack.Screen
+          name="Friends"
+          component={Friends}
+          options={{ headerShown: false }}
+          style={theme.margins.top}
+        />
+        <Stack.Screen
+          name="NextBbq"
+          component={NextBbq}
+          options={{ headerShown: false }}
+          style={theme.margins.top}
+        />
+        <Stack.Screen
+          name="PayScreen"
+          component={PayScreen}
+          options={{ headerShown: false }}
+          style={theme.margins.top}
+        />
+        <Stack.Screen
+          name="LastBbq"
+          component={LastBbq}
+          options={{ headerShown: false }}
+          style={theme.margins.top}
+        />
       </Stack.Navigator>
-      {/* <StatusBarCustomized /> */}
+      <StatusBarCustomized />
     </View>
   );
 };

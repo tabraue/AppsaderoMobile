@@ -4,6 +4,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import theme from "../../theme/theme";
 import Svg, { Path } from "react-native-svg";
+import { Image } from "react-native";
 
 export const OpenEyeIcon = () => {
   return <Icon name={"eye"} size={20} color={theme.colors.textPrimary} />;
@@ -32,6 +33,15 @@ export const Mail = ({ color }) => {
 export const HomeIcon = ({ color }) => {
   return <Icon name={"home"} size={30} color={color} />;
 };
+
+export const AppsaderoWithBorderIcon = ({size}) =>{
+  return (
+    <Image
+      source={require("../../assets/appsaderoLogo.png")}
+      style= {size === 1 ? { width: 80, height: 80, borderColor: 'white', borderWidth: 4, borderRadius: 100 } : {width:70, height: 70}}
+    />
+  );
+}
 
 export const MoneyIcon = ({ color }) => {
   return <Icon name="money" size={30} color={color} />;
