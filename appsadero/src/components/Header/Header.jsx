@@ -1,20 +1,12 @@
-import { Text, StyleSheet, SafeAreaView, View } from "react-native";
+import { Text, StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
 import theme from "../../../theme/theme";
 
-const Header = ({...props}) => {
+const Header = ({ ...props }) => {
   return (
-    (props.token) ? (
-    <SafeAreaView style={styles.headerRow}>
-          <Text style={styles.txt}>{props.title}</Text>
-          <Text style={styles.nickname}>Diana</Text>
-    </SafeAreaView>
-
-    ) : (
     <SafeAreaView style={styles.header}>
       <Text style={styles.txt}>{props.title}</Text>
     </SafeAreaView>
-    )
   );
 };
 
@@ -40,12 +32,12 @@ const styles = StyleSheet.create({
   txt: {
     fontSize: theme.fontSizes.subheading,
     alignSelf: "center",
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   nickname: {
     fontSize: theme.fontSizes.subheading,
     alignSelf: "center",
-    fontStyle: 'italic'
+    fontStyle: "italic",
   },
 });
 export default Header;
