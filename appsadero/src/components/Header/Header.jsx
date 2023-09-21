@@ -2,13 +2,14 @@ import { Text, StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
 import theme from "../../../theme/theme";
 import LogoutIcon from "./LogoutIcon/LogoutIcon";
+import PopUpMenu from "./PopUpMenu/PopUpMenu";
 
 const Header = ({ ...props }) => {
   return (
 
     <SafeAreaView style={styles.header}>
       <Text style={styles.txt}>{props.title}</Text>
-      <LogoutIcon/>
+      <PopUpMenu/>
     </SafeAreaView>
   );
 };
