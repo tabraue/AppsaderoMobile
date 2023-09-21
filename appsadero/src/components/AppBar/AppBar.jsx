@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Touchable,  } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../../../theme/theme";
 import { useRoute } from "@react-navigation/native";
-import { AppsaderoWithBorderIcon, AppsaderoWithoutBorder, BbqIcon, HomeIcon, MoneyIcon } from "../../icons/Icons";
+import { AppsaderoWithBorderIcon, BbqIcon, MoneyIcon } from "../../icons/Icons";
 
 const AppBar = ({ navigation }) => {
   const route = useRoute();
@@ -17,7 +17,7 @@ const AppBar = ({ navigation }) => {
         <BbqIcon color={route.name === "CreateBbq" ? "#ffff" : null} />
       </TouchableOpacity>
 
-      <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate("/")}>
+      <TouchableOpacity activeOpacity={0.6} onPress={() => navigation.navigate("/")} style={{ justifyContent: "center" }}>
         {/* <HomeIcon color={route.name === "/" ? "#ffff" : null} /> */}
         <AppsaderoWithBorderIcon
           style={styles.icon}

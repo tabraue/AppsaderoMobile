@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
-  Alert,
   View,
 } from "react-native";
 import AppBar from "../../components/AppBar/AppBar";
@@ -66,7 +65,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingTop: theme.margins.top + 10,
+    justifyContent: "center",
+    paddingTop: theme.margins.top,
     gap: 20,
   },
   views: {
@@ -81,7 +81,9 @@ const styles = StyleSheet.create({
     width: 'auto',
     //paddingHorizontal: 50,
     backgroundColor: theme.colors.pastelBlue,
-    alignItems: "center"
+    textAlign: "center",
+    justifyContent: "center"
+
   },
   txtbtn: {
     fontSize: theme.fontSizes.subheading,
@@ -89,7 +91,8 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.bold,
     letterSpacing: 0.25,
     marginTop: 5,
-    textAlign: "center"
+    textAlign: "center",
+    justifyContent: "center"
   },
 });
 

@@ -1,15 +1,19 @@
 import { Text, StyleSheet, SafeAreaView } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import theme from "../../../theme/theme";
-import LogoutIcon from "./LogoutIcon/LogoutIcon";
 import PopUpMenu from "./PopUpMenu/PopUpMenu";
+import { AuthContext } from "../../context/AuthContext";
+
 
 const Header = ({ ...props }) => {
+  const { token, nickname } = useContext(AuthContext)
+
+
   return (
 
     <SafeAreaView style={styles.header}>
-      <Text style={styles.txt}>{props.title}</Text>
-      <PopUpMenu/>
+      <Text style={styles.txt}>{props.title}  {token &&  <Text>{nickname}</Text>}</Text>
+      <PopUpMenu />
     </SafeAreaView>
   );
 };
@@ -17,7 +21,8 @@ const Header = ({ ...props }) => {
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: theme.colors.salmonBackground,
     paddingTop: theme.margins.top,
     left: 0,
@@ -37,6 +42,7 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSizes.subheading,
     alignSelf: "center",
     fontWeight: "bold",
+    marginHorizontal:10,
   },
   nickname: {
     fontSize: theme.fontSizes.subheading,
